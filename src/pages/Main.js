@@ -17,5 +17,5 @@ export default ({ match: { params } }) => {
     return <Redirect to="/" />;
   }
 
-  return <div data-testid="main-page">Main</div>;
+  return <div data-testid="main-page">{process.env.REACT_APP_API_KEY}</div>;
 };

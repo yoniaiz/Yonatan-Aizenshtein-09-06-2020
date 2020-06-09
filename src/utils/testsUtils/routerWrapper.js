@@ -3,7 +3,7 @@ import React from "react";
 import { createMemoryHistory } from "history";
 import { Router } from "react-router-dom";
 
-//react testing library
+//redux wrapper
 import { render } from "./reduxWrapper";
 
 export function renderWithRouter(
