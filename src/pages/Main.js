@@ -17,5 +17,5 @@ export default ({ match: { params } }) => {
     return <Redirect to="/" />;
   }
 
-  return <div>Main</div>;
+  return <div data-testid="main-page">Main</div>;
 };
