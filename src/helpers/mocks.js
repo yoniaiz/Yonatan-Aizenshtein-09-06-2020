@@ -312,8 +312,58 @@ const currentWeather = [
       "http://www.accuweather.com/en/us/new-york-ny/10007/current-weather/349727?lang=en-us",
   },
 ];
+
+const currentLocation = {
+  Version: 1,
+  Key: "214299",
+  Type: "City",
+  Rank: 55,
+  LocalizedName: "Karmi'el",
+  EnglishName: "Karmi'el",
+  PrimaryPostalCode: "",
+  Region: {
+    ID: "MEA",
+    LocalizedName: "Middle East",
+    EnglishName: "Middle East",
+  },
+  Country: { ID: "IL", LocalizedName: "Israel", EnglishName: "Israel" },
+  AdministrativeArea: {
+    ID: "Z",
+    LocalizedName: "Northern District",
+    EnglishName: "Northern District",
+    Level: 1,
+    LocalizedType: "District",
+    EnglishType: "District",
+    CountryID: "IL",
+  },
+  TimeZone: {
+    Code: "IDT",
+    Name: "Asia/Jerusalem",
+    GmtOffset: 3.0,
+    IsDaylightSaving: true,
+    NextOffsetChange: "2020-10-24T23:00:00Z",
+  },
+  GeoPosition: {
+    Latitude: 32.917,
+    Longitude: 35.304,
+    Elevation: {
+      Metric: { Value: 201.0, Unit: "m", UnitType: 5 },
+      Imperial: { Value: 659.0, Unit: "ft", UnitType: 0 },
+    },
+  },
+  IsAlias: false,
+  SupplementalAdminAreas: [],
+  DataSets: [
+    "AirQualityCurrentConditions",
+    "AirQualityForecasts",
+    "Alerts",
+    "ForecastConfidence",
+  ],
+};
+
 export const mocks = {
   autocompleteRes,
   fiveDayForecast,
   currentWeather,
+  currentLocation
 };

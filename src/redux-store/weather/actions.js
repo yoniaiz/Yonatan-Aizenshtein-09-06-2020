@@ -16,10 +16,15 @@ const dispatcher = new Dispatcher();
 /**
  * get current user location
  */
-export const getCurrentLocation = () => () => {
+export const getCurrentLocation = () => async (dispatch) => {
   dispatcher.action = CURRENT_LOCATION;
 
   dispatcher.request(true, true);
+
+  const telAvivForFallback = {
+    city: "Tel Aviv",
+    value: "215854",
+  };
 
   const options = {
     enableHighAccuracy: true,
@@ -28,15 +33,35 @@ export const getCurrentLocation = () => () => {
   };
 
   try {
-    function success(pos) {
+    async function success(pos) {
       const { latitude, longitude } = pos.coords;
-      dispatcher.success({ latitude, longitude });
+
+      try {
+        // const response = await fetch(
+        //   `${api.getAddressByCoords}?${api.apiKey}&q=${latitude},${longitude}`
+        // );
+
+        const currentAddress = mocks.currentLocation; //await response.json();
+        const { LocalizedName, Country, Key } = currentAddress;
+
+        const parsedCurrentAddress = {
+          city: LocalizedName,
+          country: Country.LocalizedName,
+          value: Key,
+        };
+
+        dispatcher.success(parsedCurrentAddress);
+        dispatch(getFiveDayForecast(parsedCurrentAddress));
+      } catch (e) {
+        throw new Error("fallback");
+      }
     }
 
     function error(err) {
       if (err.code === 1) {
         dispatcher.failure({ message: `You denied your location share...` });
       }
+      dispatch(getFiveDayForecast(telAvivForFallback));
     }
 
     if (!navigator.geolocation) {
@@ -48,6 +73,7 @@ export const getCurrentLocation = () => () => {
     }
   } catch (e) {
     console.log(e);
+    dispatch(getFiveDayForecast(telAvivForFallback));
   }
 
   dispatcher.loadingDone();
