@@ -1,5 +1,5 @@
 import { CURRENT_LOCATION, AUTOCOMPLETE } from "./types";
-import { api } from "constants/index";
+import { api, CLEAR } from "constants/index";
 import { mocks } from "helpers/mocks";
 import { helperFunctions } from "helpers/functions";
 
@@ -54,14 +54,20 @@ export const placesAutocomplete = (str) => async () => {
 
   try {
     // const response = await fetch(`${api.autocomplete}?${api.apiKey}&q=${str}`);
-    const autocompletedAddresses = mocks.autocompleteRes;
-    console.log(
-      helperFunctions.autocompleteAddressesParser(autocompletedAddresses)
+    const autocompletedAddresses = mocks.autocompleteRes; //response.json();
+
+    const parsedAddresses = helperFunctions.autocompleteAddressesParser(
+      autocompletedAddresses
     );
-    dispatcher.success();
+
+    dispatcher.success(parsedAddresses);
   } catch (e) {
     dispatcher.failure({ message: "Something went wrong" });
   } finally {
     dispatcher.loadingDone();
   }
 };
+
+export const clearAutocomplete = () => ({
+  type: `${AUTOCOMPLETE}${CLEAR}`,
+});

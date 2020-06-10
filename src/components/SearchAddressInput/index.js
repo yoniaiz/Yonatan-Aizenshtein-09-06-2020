@@ -1,7 +1,7 @@
 import React from "react";
 
 //redux
-import { placesAutocomplete } from "redux-store/actions";
+import { placesAutocomplete, clearAutocomplete } from "redux-store/actions";
 import { useDispatch } from "react-redux";
 
 export default () => {
@@ -11,6 +11,10 @@ export default () => {
   React.useEffect(() => {
     if (inputVal) {
       dispatch(placesAutocomplete(inputVal));
+    }
+
+    return () => {
+        dispatch(clearAutocomplete());
     }
   }, [inputVal]);
   return (

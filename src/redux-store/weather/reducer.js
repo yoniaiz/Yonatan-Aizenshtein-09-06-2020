@@ -1,9 +1,10 @@
-import { SUCCESS } from "constants/index";
-import { CURRENT_LOCATION } from "./types";
+import { SUCCESS, FAILURE, CLEAR } from "constants/index";
+import { CURRENT_LOCATION, AUTOCOMPLETE } from "./types";
 
 const INIT = {
   favorite: [],
   currentLocation: {},
+  autocomplete: [],
 };
 
 export const weatherReducer = (state = INIT, { type, payload }) => {
@@ -13,6 +14,23 @@ export const weatherReducer = (state = INIT, { type, payload }) => {
         ...state,
         currentLocation: { ...payload },
       };
+
+    case `${AUTOCOMPLETE}${SUCCESS}`:
+      return {
+        ...state,
+        autocomplete: [...payload],
+      };
+
+    // TODO add clear autocomplete
+    case `${AUTOCOMPLETE}${FAILURE}`:
+    case `${AUTOCOMPLETE}${CLEAR}`:
+      return {
+        ...state,
+        autocomplete: [],
+      };
+    
+    
+
     default:
       return { ...state };
   }
