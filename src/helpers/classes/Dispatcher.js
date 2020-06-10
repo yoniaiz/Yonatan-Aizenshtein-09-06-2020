@@ -9,6 +9,15 @@ import {
   FAILURE,
 } from "constants/index";
 
+/**
+ * Redux common use cases helper
+ * @constructor
+ * _dispatch = the dispatch from redux store
+ * @param request best to update the request param with the classes setter for auto updating the success and failure param
+ * @param success not required will be set automatically when setting the request param
+ * @param failure not required will be set automatically when setting the request param
+ */
+
 export default class Dispatcher {
   constructor(request, success, failure) {
     this._dispatch = store.dispatch;
@@ -21,11 +30,17 @@ export default class Dispatcher {
     return this.request;
   }
 
+  /** setting the desired action for setting all use cases
+   *  @param action example action = LOGIN
+   *  auto setting the the request type for dispatch to LOGIN
+   *  the success type to LOGIN_SUCCESS
+   *  and failure type to LOGIN_FAILURE
+   */
   set action(action) {
-    this.setRequestActions(action);
+    this._setRequestActions(action);
   }
 
-  setRequestActions(action) {
+  _setRequestActions(action) {
     if (action) {
       this._request = action;
       this._success = `${this._request}${SUCCESS}`;
@@ -33,9 +48,14 @@ export default class Dispatcher {
     }
   }
 
+  /**
+   *
+   * @param {*} loading set to true for dispatching the ui basic loader
+   * @param {*} page_loader set to true for dispatching the ui page loader
+   */
   request(loading, page_loader) {
     if (loading) {
-      this.loading(page_loader);
+      this._loading(page_loader);
     }
 
     this._dispatch({
@@ -43,7 +63,7 @@ export default class Dispatcher {
     });
   }
 
-  loading(page_loader) {
+  _loading(page_loader) {
     if (page_loader) {
       this._dispatch({
         type: PAGE_LOADER,
@@ -55,6 +75,10 @@ export default class Dispatcher {
     }
   }
 
+  /**
+   *
+   * @param {*} payload the payload for updating the redux store
+   */
   success(payload) {
     this._dispatch({
       type: this._success,
@@ -62,6 +86,10 @@ export default class Dispatcher {
     });
   }
 
+  /**
+   *
+   * @param {*} error object that contains message of the error and display toast of the message
+   */
   failure(error = {}) {
     this.showToast("error", error.message || error._message);
     this._dispatch({
@@ -74,6 +102,9 @@ export default class Dispatcher {
     if (message) showNotification(message ? message : "Bad Request", type);
   }
 
+  /**
+   * stop all loaders
+   */
   loadingDone() {
     this._dispatch({
       type: LOADING_DONE,

@@ -1,13 +1,19 @@
-import { CURRENT_LOCATION } from "./types";
+import { CURRENT_LOCATION, AUTOCOMPLETE } from "./types";
+import { api } from "constants/index";
+import { mocks } from "helpers/mocks";
+import { helperFunctions } from "helpers/functions";
 
-import Dispatcher from "utils/classes/Dispatcher";
+import Dispatcher from "helpers/classes/Dispatcher";
 
 const dispatcher = new Dispatcher();
 
-export const getCurrentLocation = () => async () => {
+/**
+ * get current user location
+ */
+export const getCurrentLocation = () => () => {
   dispatcher.action = CURRENT_LOCATION;
 
-  dispatcher.request(true);
+  dispatcher.request(true, true);
 
   const options = {
     enableHighAccuracy: true,
@@ -39,4 +45,23 @@ export const getCurrentLocation = () => async () => {
   }
 
   dispatcher.loadingDone();
+};
+
+export const placesAutocomplete = (str) => async () => {
+  dispatcher.action = AUTOCOMPLETE;
+
+  dispatcher.request(true);
+
+  try {
+    // const response = await fetch(`${api.autocomplete}?${api.apiKey}&q=${str}`);
+    const autocompletedAddresses = mocks.autocompleteRes;
+    console.log(
+      helperFunctions.autocompleteAddressesParser(autocompletedAddresses)
+    );
+    dispatcher.success();
+  } catch (e) {
+    dispatcher.failure({ message: "Something went wrong" });
+  } finally {
+    dispatcher.loadingDone();
+  }
 };
