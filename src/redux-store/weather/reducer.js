@@ -1,10 +1,11 @@
 import { SUCCESS, FAILURE, CLEAR } from "constants/index";
-import { CURRENT_LOCATION, AUTOCOMPLETE } from "./types";
+import { CURRENT_LOCATION, AUTOCOMPLETE, FIVE_DAY_FORECAST } from "./types";
 
 const INIT = {
   favorite: [],
   currentLocation: {},
   autocomplete: [],
+  forecast: {},
 };
 
 export const weatherReducer = (state = INIT, { type, payload }) => {
@@ -28,8 +29,12 @@ export const weatherReducer = (state = INIT, { type, payload }) => {
         ...state,
         autocomplete: [],
       };
-    
-    
+
+    case `${FIVE_DAY_FORECAST}${SUCCESS}`:
+      return {
+        ...state,
+        forecast: { ...payload },
+      };
 
     default:
       return { ...state };

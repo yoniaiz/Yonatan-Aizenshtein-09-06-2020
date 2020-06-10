@@ -1,4 +1,4 @@
-import { CURRENT_LOCATION, AUTOCOMPLETE } from "./types";
+import { CURRENT_LOCATION, AUTOCOMPLETE, FIVE_DAY_FORECAST } from "./types";
 import { api, CLEAR } from "constants/index";
 import { mocks } from "helpers/mocks";
 import { helperFunctions } from "helpers/functions";
@@ -54,7 +54,7 @@ export const placesAutocomplete = (str) => async () => {
 
   try {
     // const response = await fetch(`${api.autocomplete}?${api.apiKey}&q=${str}`);
-    const autocompletedAddresses = mocks.autocompleteRes; //response.json();
+    const autocompletedAddresses = mocks.autocompleteRes; //await response.json();
 
     const parsedAddresses = helperFunctions.autocompleteAddressesParser(
       autocompletedAddresses
@@ -71,3 +71,21 @@ export const placesAutocomplete = (str) => async () => {
 export const clearAutocomplete = () => ({
   type: `${AUTOCOMPLETE}${CLEAR}`,
 });
+
+export const getFiveDayForecast = (countryId) => async () => {
+  dispatcher.action = FIVE_DAY_FORECAST;
+
+  dispatcher.request(true);
+
+  try {
+    // const response = await fetch(`${api.forecasts}/${countryId}?${api.apiKey}`);
+    const forecast =  mocks.fiveDayForecast //await response.json();
+    const parsedForecast = helperFunctions.forecastParser(forecast)
+
+    dispatcher.success(parsedForecast);
+  } catch {
+    dispatcher.failure();
+  } finally {
+    dispatcher.loadingDone();
+  }
+};
