@@ -1,14 +1,20 @@
 import { SUCCESS, FAILURE, CLEAR } from "constants/index";
-import { CURRENT_LOCATION, AUTOCOMPLETE, FIVE_DAY_FORECAST } from "./types";
+import {
+  CURRENT_LOCATION,
+  AUTOCOMPLETE,
+  FIVE_DAY_FORECAST,
+  CURRENT_WEATHER,
+} from "./types";
 
-const INIT = {
+export const WEATHER_INIT = {
   favorite: [],
   currentLocation: {},
   autocomplete: [],
   forecast: {},
+  currentWeather: {},
 };
 
-export const weatherReducer = (state = INIT, { type, payload }) => {
+export const weatherReducer = (state = WEATHER_INIT, { type, payload }) => {
   switch (type) {
     case `${CURRENT_LOCATION}${SUCCESS}`:
       return {
@@ -34,6 +40,20 @@ export const weatherReducer = (state = INIT, { type, payload }) => {
       return {
         ...state,
         forecast: { ...payload },
+      };
+
+    case `${FIVE_DAY_FORECAST}${FAILURE}`:
+    case `${CURRENT_WEATHER}${FAILURE}`:
+      return {
+        ...state,
+        forecast: {},
+        currentWeather: {},
+      };
+
+    case `${CURRENT_WEATHER}${SUCCESS}`:
+      return {
+        ...state,
+        currentWeather: { ...payload },
       };
 
     default:

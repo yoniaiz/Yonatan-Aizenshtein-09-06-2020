@@ -3,18 +3,36 @@ import React from "react";
 import { createMemoryHistory } from "history";
 import { Router } from "react-router-dom";
 
-//redux wrapper
-import { render } from "./reduxWrapper";
+//redux
+import { createStore, applyMiddleware } from "redux";
+import { Provider } from "react-redux";
+import { rootReducer } from "redux-store/root";
+import thunk from "redux-thunk";
 
-export function renderWithRouter(
+import { render } from "@testing-library/react";
+
+export function renderWithRouterAndRedux(
   ui,
   {
     route = "/",
     history = createMemoryHistory({ initialEntries: [route] }),
+    initialState = {
+      weather: {
+        favorite: [],
+        currentLocation: {},
+        autocomplete: [],
+        forecast: {},
+        currentWeather: {},
+      },
+    },
+    store = createStore(rootReducer, initialState, applyMiddleware(thunk)),
+    ...renderOptions
   } = {}
 ) {
   const Wrapper = ({ children }) => (
-    <Router history={history}>{children}</Router>
+    <Provider store={store}>
+      <Router history={history}>{children}</Router>
+    </Provider>
   );
   return {
     ...render(ui, { wrapper: Wrapper }),

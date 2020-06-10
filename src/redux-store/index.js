@@ -12,7 +12,7 @@ const composeEnhancers =
 
 const store = createStore(
   rootReducer,
-  process.env.NODE_ENV === "development" || !process.env.REACT_APP_NODE_ENV
+  (process.env.NODE_ENV === "development" || !process.env.REACT_APP_NODE_ENV) && !process.env.REACT_APP_TESTS
     ? composeEnhancers(applyMiddleware(thunk, logger))
     : applyMiddleware(thunk)
 );

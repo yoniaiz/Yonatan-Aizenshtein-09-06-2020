@@ -5,7 +5,7 @@ import Select from "react-select";
 import { placesAutocomplete, clearAutocomplete } from "redux-store/actions";
 import { useDispatch, useSelector } from "react-redux";
 
-export default ({ selectedAddressKey, setSelectedAddressKey }) => {
+export default ({ selectedAddress, setSelectedAddress }) => {
   const [inputVal, setInputVal] = React.useState("");
   const [options, setOptions] = React.useState([]);
 
@@ -22,6 +22,7 @@ export default ({ selectedAddressKey, setSelectedAddressKey }) => {
     if (autocomplete && autocomplete.length > 0) {
       const selectOptions = autocomplete.map((address) => ({
         label: `${address.country} ${address.address}`,
+        city: `${address.address}`,
         value: address.key,
       }));
 
@@ -33,13 +34,15 @@ export default ({ selectedAddressKey, setSelectedAddressKey }) => {
     <div>
       <Select
         options={options}
+        data-testid="select-input"
+        inputId="select-input"
         inputValue={inputVal}
         loadingMessage="loading"
         placeholder="Select country"
         value={options.filter(
-          (address) => address.value === selectedAddressKey
+          (address) => address.value === selectedAddress.key
         )}
-        onChange={(e) => setSelectedAddressKey(e.value)}
+        onChange={(selected) => setSelectedAddress(selected)}
         onInputChange={(val) => setInputVal(val)}
       />
     </div>

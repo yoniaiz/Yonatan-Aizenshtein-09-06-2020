@@ -285,7 +285,35 @@ const fiveDayForecast = {
   ],
 };
 
+const currentWeather = [
+  {
+    LocalObservationDateTime: "2020-06-10T12:23:00-04:00",
+    EpochTime: 1591806180,
+    WeatherText: "Sunny",
+    WeatherIcon: 1,
+    HasPrecipitation: false,
+    PrecipitationType: null,
+    IsDayTime: true,
+    Temperature: {
+      Metric: {
+        Value: 27.2,
+        Unit: "C",
+        UnitType: 17,
+      },
+      Imperial: {
+        Value: 81.0,
+        Unit: "F",
+        UnitType: 18,
+      },
+    },
+    MobileLink:
+      "http://m.accuweather.com/en/us/new-york-ny/10007/current-weather/349727?lang=en-us",
+    Link:
+      "http://www.accuweather.com/en/us/new-york-ny/10007/current-weather/349727?lang=en-us",
+  },
+];
 export const mocks = {
   autocompleteRes,
-  fiveDayForecast
+  fiveDayForecast,
+  currentWeather,
 };

@@ -5,17 +5,18 @@ import { getFiveDayForecast } from "redux-store/actions";
 import { useDispatch } from "react-redux";
 // components
 import SearchAddressInput from "components/SearchAddressInput";
+import DisplayAddress from "components/DisplayAddress";
 
 export default ({ match: { params } }) => {
-  const [selectedAddressKey, setSelectedAddressKey] = React.useState("");
+  const [selectedAddress, setSelectedAddress] = React.useState("");
   const dispatch = useDispatch();
   let content = "main";
 
   React.useEffect(() => {
-    if (selectedAddressKey) {
-      dispatch(getFiveDayForecast(selectedAddressKey));
+    if (selectedAddress) {
+      dispatch(getFiveDayForecast(selectedAddress));
     }
-  }, [selectedAddressKey]);
+  }, [selectedAddress]);
 
   if (params.id) {
     // when id passed in params check if valid number
@@ -30,9 +31,10 @@ export default ({ match: { params } }) => {
     <div data-testid="main-page">
       {content}
       <SearchAddressInput
-        setSelectedAddressKey={setSelectedAddressKey}
-        selectedAddressKey={selectedAddressKey}
+        setSelectedAddress={setSelectedAddress}
+        selectedAddress={selectedAddress}
       />
+      <DisplayAddress />
     </div>
   );
 };

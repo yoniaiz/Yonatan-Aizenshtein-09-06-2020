@@ -1,4 +1,10 @@
-import { CURRENT_LOCATION, AUTOCOMPLETE, FIVE_DAY_FORECAST } from "./types";
+import {
+  CURRENT_LOCATION,
+  AUTOCOMPLETE,
+  FIVE_DAY_FORECAST,
+  CURRENT_WEATHER,
+} from "./types";
+
 import { api, CLEAR } from "constants/index";
 import { mocks } from "helpers/mocks";
 import { helperFunctions } from "helpers/functions";
@@ -72,17 +78,52 @@ export const clearAutocomplete = () => ({
   type: `${AUTOCOMPLETE}${CLEAR}`,
 });
 
-export const getFiveDayForecast = (countryId) => async () => {
+export const getFiveDayForecast = (selectedAddress) => async (dispatch) => {
   dispatcher.action = FIVE_DAY_FORECAST;
 
   dispatcher.request(true);
 
   try {
-    // const response = await fetch(`${api.forecasts}/${countryId}?${api.apiKey}`);
-    const forecast =  mocks.fiveDayForecast //await response.json();
-    const parsedForecast = helperFunctions.forecastParser(forecast)
+    // const response = await fetch(`${api.forecasts}/${selectedAddress.value}?${api.apiKey}`);
+    const forecast = mocks.fiveDayForecast; //await response.json();
+    const parsedForecast = helperFunctions.forecastParser(forecast);
 
     dispatcher.success(parsedForecast);
+    //get current weather if five day forecast was successful
+    dispatch(getCurrentWeather(selectedAddress));
+  } catch {
+    dispatcher.failure();
+  } finally {
+    dispatcher.loadingDone();
+  }
+};
+
+export const getCurrentWeather = (selectedAddress) => async () => {
+  dispatcher.action = CURRENT_WEATHER;
+
+  dispatcher.request(true);
+
+  try {
+    // const response = await fetch(
+    //   `${api.currentConditions}/${selectedAddress.value}?${api.apiKey}`
+    // );
+    const currentWeather = mocks.currentWeather; // await response.json();
+
+    const {
+      WeatherText,
+      IsDayTime,
+      Temperature: { Imperial, Metric },
+    } = currentWeather[0];
+
+    const parsedCurrentWeather = {
+      name: selectedAddress.city,
+      text: WeatherText,
+      isDayTime: IsDayTime,
+      celsius: Metric.Value,
+      fahrenheit: Imperial.Value,
+    };
+
+    dispatcher.success(parsedCurrentWeather);
   } catch {
     dispatcher.failure();
   } finally {
