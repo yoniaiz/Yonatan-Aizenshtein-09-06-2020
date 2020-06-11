@@ -4,12 +4,12 @@ export default ({
   currentWeather: { name, text, celsius, fahrenheit, isDayTime },
 }) => {
   return (
-    <div>
-      <div>
+    <div className="weather-box-header">
+      <div className="selected-address">
         <div>{name}</div>
-        <div>{fahrenheit}°f</div>
+        <div>{fahrenheit}°F</div>
       </div>
-      <div>Like</div>
+      <div className="add-to-favorite-address">Like</div>
     </div>
   );
 };

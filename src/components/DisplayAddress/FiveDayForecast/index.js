@@ -4,9 +4,9 @@ import Forecast from "./Forecast";
 
 export default ({ forecast: { headline, dailyForecast } }) => {
   return (
-    <div>
+    <div className="forecast-container">
       <Headline headline={headline} />
-      <div>
+      <div className="five-day-container">
         {dailyForecast.map((forecast,index) => (
           <Forecast forecast={forecast} key={index} />
         ))}

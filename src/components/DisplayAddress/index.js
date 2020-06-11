@@ -1,6 +1,8 @@
 import React from "react";
 //redux
 import { useSelector } from "react-redux";
+//styled components
+import { StyledWeatherBox } from "styles";
 //components
 import FiveDayForecast from "./FiveDayForecast";
 import DisplayAddressHeader from "./DisplayAddressHeader";
@@ -14,9 +16,10 @@ export default () => {
     return null;
 
   return (
-    <div>
+    <StyledWeatherBox>
       <DisplayAddressHeader currentWeather={currentWeather} />
+      <div className="deg-measure">°F</div>
       <FiveDayForecast forecast={forecast} />
-    </div>
+    </StyledWeatherBox>
   );
 };

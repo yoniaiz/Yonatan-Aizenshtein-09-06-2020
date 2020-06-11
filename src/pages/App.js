@@ -1,8 +1,8 @@
-import React, { lazy, Suspense } from "react";
+import React, { lazy, Suspense, Fragment } from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
 
 //components
-import Navbar from "components/Navbar";
+import Background from "components/Background";
 //utils
 
 // Lazy
@@ -11,8 +11,7 @@ const Main = lazy(() => import("pages/Main"));
 
 export default () => {
   return (
-    <div>
-      <Navbar />
+    <Background>
       <Suspense fallback={<div>loading</div>}>
         <Switch>
           <Route path="/favorite" exact component={Favorites} />
@@ -21,6 +20,6 @@ export default () => {
           <Redirect to="/" />
         </Switch>
       </Suspense>
-    </div>
+    </Background>
   );
 };

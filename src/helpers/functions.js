@@ -40,11 +40,50 @@ function forecastParser(forecast) {
 }
 
 function validObjectWithKeys(obj) {
-  return (obj && typeof obj === "object" && Object.keys(obj).length > 0);
+  return obj && typeof obj === "object" && Object.keys(obj).length > 0;
+}
+
+const generateDynamicComponent = (
+  height,
+  width,
+  left,
+  bottom,
+  zIndex,
+  others = {}
+) => ({
+  height,
+  width,
+  left,
+  bottom,
+  zIndex,
+  ...others,
+});
+
+function getDayOfTheWeek(date) {
+  const dt = new Date(date);
+  const day = dt.getDay();
+  switch (day) {
+    case 1:
+      return "Mon";
+    case 2:
+      return "Tue";
+    case 3:
+      return "Wed";
+    case 4:
+      return "Thu";
+    case 5:
+      return "Fri";
+    case 6:
+      return "Sat";
+    default:
+      return "Sun";
+  }
 }
 
 export const helperFunctions = {
   autocompleteAddressesParser,
   forecastParser,
-  validObjectWithKeys
+  validObjectWithKeys,
+  generateDynamicComponent,
+  getDayOfTheWeek,
 };

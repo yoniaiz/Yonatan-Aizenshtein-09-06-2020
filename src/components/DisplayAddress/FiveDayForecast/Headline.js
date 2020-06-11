@@ -1,5 +1,5 @@
 import React from "react";
 
 export default ({ headline }) => {
-  return <div>{headline}</div>;
+  return <h3>{headline}</h3>;
 };
