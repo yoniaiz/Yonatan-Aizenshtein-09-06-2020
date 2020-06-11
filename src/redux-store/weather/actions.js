@@ -21,6 +21,7 @@ export const getCurrentLocation = () => async (dispatch) => {
 
   dispatcher.request(true, true);
 
+  // tel aviv details for setting as default if current location not available
   const telAvivForFallback = {
     city: "Tel Aviv",
     value: "215854",

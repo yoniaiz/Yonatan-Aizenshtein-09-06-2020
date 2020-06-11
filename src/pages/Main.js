@@ -1,7 +1,11 @@
 import React from "react";
 import { Redirect } from "react-router-dom";
 //redux
-import { getFiveDayForecast } from "redux-store/actions";
+import {
+  getFiveDayForecast,
+  getCurrentLocation,
+  clearAutocomplete,
+} from "redux-store/actions";
 import { useDispatch } from "react-redux";
 // components
 import SearchAddressInput from "components/SearchAddressInput";
@@ -11,6 +15,14 @@ export default ({ match: { params } }) => {
   const [selectedAddress, setSelectedAddress] = React.useState("");
   const dispatch = useDispatch();
   let content = "main";
+
+  React.useEffect(() => {
+    dispatch(getCurrentLocation());
+
+    return () => {
+      dispatch(clearAutocomplete());
+    };
+  }, []);
 
   React.useEffect(() => {
     if (selectedAddress) {

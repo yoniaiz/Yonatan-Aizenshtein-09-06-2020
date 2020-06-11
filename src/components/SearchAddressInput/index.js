@@ -40,7 +40,7 @@ export default ({ selectedAddress, setSelectedAddress }) => {
         loadingMessage="loading"
         placeholder="Select country"
         value={options.filter(
-          (address) => address.value === selectedAddress.key
+          (address) => address.value === selectedAddress.value
         )}
         onChange={(selected) => setSelectedAddress(selected)}
         onInputChange={(val) => setInputVal(val)}
