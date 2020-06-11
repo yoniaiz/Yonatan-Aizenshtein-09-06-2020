@@ -3,15 +3,20 @@ import {
   AUTOCOMPLETE,
   FIVE_DAY_FORECAST,
   CURRENT_WEATHER,
+  RESET,
 } from "./types";
 
-import { api, CLEAR } from "constants/index";
+import { api, CLEAR, SUCCESS } from "constants/index";
 import { mocks } from "helpers/mocks";
 import { helperFunctions } from "helpers/functions";
 
 import Dispatcher from "helpers/classes/Dispatcher";
 
 const dispatcher = new Dispatcher();
+
+export const reset = () => ({
+  type: RESET,
+});
 
 /**
  * get current user location
@@ -24,7 +29,10 @@ export const getCurrentLocation = () => async (dispatch) => {
   // tel aviv details for setting as default if current location not available
   const telAvivForFallback = {
     city: "Tel Aviv",
+    address: "Tel Aviv",
+    country: "Israel",
     value: "215854",
+    key: "215854",
   };
 
   const options = {
@@ -49,12 +57,15 @@ export const getCurrentLocation = () => async (dispatch) => {
           city: LocalizedName,
           country: Country.LocalizedName,
           value: Key,
+          key: Key,
+          address: LocalizedName,
         };
 
         dispatcher.success(parsedCurrentAddress);
-        dispatch(getFiveDayForecast(parsedCurrentAddress));
+
+        dispatch(setAddressWithDetails(parsedCurrentAddress));
       } catch (e) {
-        throw new Error("fallback");
+        dispatch(setAddressWithDetails(telAvivForFallback));
       }
     }
 
@@ -62,7 +73,7 @@ export const getCurrentLocation = () => async (dispatch) => {
       if (err.code === 1) {
         dispatcher.failure({ message: `You denied your location share...` });
       }
-      dispatch(getFiveDayForecast(telAvivForFallback));
+      dispatch(setAddressWithDetails(telAvivForFallback));
     }
 
     if (!navigator.geolocation) {
@@ -74,10 +85,19 @@ export const getCurrentLocation = () => async (dispatch) => {
     }
   } catch (e) {
     console.log(e);
-    dispatch(getFiveDayForecast(telAvivForFallback));
+    dispatch(setAddressWithDetails(telAvivForFallback));
   }
 
   dispatcher.loadingDone();
+};
+
+export const setAddressWithDetails = (option) => (dispatch) => {
+  dispatch({
+    type: `${AUTOCOMPLETE}${SUCCESS}`,
+    payload: [{ ...option }],
+  });
+
+  dispatch(getFiveDayForecast(option));
 };
 
 export const placesAutocomplete = (str) => async () => {

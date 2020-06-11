@@ -1,34 +1,56 @@
 import React from "react";
 import { Redirect } from "react-router-dom";
+
 //redux
 import {
   getFiveDayForecast,
   getCurrentLocation,
   clearAutocomplete,
+  setAddressWithDetails,
 } from "redux-store/actions";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+
+//helpers
+import { helperFunctions } from "helpers/functions";
+//utils
+import ErrorBoundary from "utils/ErrorBoundary";
 // components
 import SearchAddressInput from "components/SearchAddressInput";
 import DisplayAddress from "components/DisplayAddress";
 
+const { validObjectWithKeys } = helperFunctions;
+
 export default ({ match: { params } }) => {
-  const [selectedAddress, setSelectedAddress] = React.useState("");
+  const { currentLocation } = useSelector((state) => state.weather);
   const dispatch = useDispatch();
+
+  const [selectedAddress, setSelectedAddress] = React.useState({});
   let content = "main";
 
   React.useEffect(() => {
-    dispatch(getCurrentLocation());
+    // if no current location get current location but if already exist use the same one
+    if (!validObjectWithKeys(currentLocation)) {
+      dispatch(getCurrentLocation());
+    } else {
+      dispatch(setAddressWithDetails(currentLocation));
+    }
 
     return () => {
+      // on component unmount clear auto complete
       dispatch(clearAutocomplete());
     };
   }, []);
 
   React.useEffect(() => {
-    if (selectedAddress) {
+    if (validObjectWithKeys(selectedAddress) && selectedAddress.selected) {
+      // when new selected address is selected from autocomplete
       dispatch(getFiveDayForecast(selectedAddress));
     }
-  }, [selectedAddress]);
+    if (currentLocation && !validObjectWithKeys(selectedAddress)) {
+      // set selected address as current location
+      setSelectedAddress(currentLocation);
+    }
+  }, [selectedAddress, currentLocation]);
 
   if (params.id) {
     // when id passed in params check if valid number
@@ -40,13 +62,15 @@ export default ({ match: { params } }) => {
   }
 
   return (
-    <div data-testid="main-page">
-      {content}
-      <SearchAddressInput
-        setSelectedAddress={setSelectedAddress}
-        selectedAddress={selectedAddress}
-      />
-      <DisplayAddress />
-    </div>
+    <ErrorBoundary>
+      <div data-testid="main-page">
+        {content}
+        <SearchAddressInput
+          setSelectedAddress={setSelectedAddress}
+          selectedAddress={selectedAddress}
+        />
+        <DisplayAddress />
+      </div>
+    </ErrorBoundary>
   );
 };

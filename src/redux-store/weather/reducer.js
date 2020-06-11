@@ -4,6 +4,7 @@ import {
   AUTOCOMPLETE,
   FIVE_DAY_FORECAST,
   CURRENT_WEATHER,
+  RESET,
 } from "./types";
 
 export const WEATHER_INIT = {
@@ -16,6 +17,11 @@ export const WEATHER_INIT = {
 
 export const weatherReducer = (state = WEATHER_INIT, { type, payload }) => {
   switch (type) {
+    case RESET:
+      return {
+        ...WEATHER_INIT,
+      };
+
     case `${CURRENT_LOCATION}${SUCCESS}`:
       return {
         ...state,

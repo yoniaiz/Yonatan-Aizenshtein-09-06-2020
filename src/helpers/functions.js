@@ -39,7 +39,12 @@ function forecastParser(forecast) {
   return parsedForecast;
 }
 
+function validObjectWithKeys(obj) {
+  return (obj && typeof obj === "object" && Object.keys(obj).length > 0);
+}
+
 export const helperFunctions = {
   autocompleteAddressesParser,
   forecastParser,
+  validObjectWithKeys
 };

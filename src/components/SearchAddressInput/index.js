@@ -14,12 +14,14 @@ export default ({ selectedAddress, setSelectedAddress }) => {
 
   React.useEffect(() => {
     if (inputVal) {
+      // call autocomplete when input entered
       dispatch(placesAutocomplete(inputVal));
     }
   }, [inputVal]);
 
   React.useEffect(() => {
     if (autocomplete && autocomplete.length > 0) {
+      // parse the autocomplete to fit the react-select component
       const selectOptions = autocomplete.map((address) => ({
         label: `${address.country} ${address.address}`,
         city: `${address.address}`,
@@ -42,8 +44,13 @@ export default ({ selectedAddress, setSelectedAddress }) => {
         value={options.filter(
           (address) => address.value === selectedAddress.value
         )}
-        onChange={(selected) => setSelectedAddress(selected)}
-        onInputChange={(val) => setInputVal(val)}
+        onChange={(selected) =>
+          setSelectedAddress({ ...selected, selected: true })
+        }
+        onInputChange={(val) => {
+          // english letters only or white space
+          if (/^$|[a-z A-Z]+$/.test(val)) setInputVal(val);
+        }}
       />
     </div>
   );
