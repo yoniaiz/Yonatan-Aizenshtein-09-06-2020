@@ -168,6 +168,7 @@ export const getCurrentWeather = (selectedAddress) => async () => {
       isDayTime: IsDayTime,
       celsius: Metric.Value,
       fahrenheit: Imperial.Value,
+      ...selectedAddress
     };
 
     dispatcher.success(parsedCurrentWeather);

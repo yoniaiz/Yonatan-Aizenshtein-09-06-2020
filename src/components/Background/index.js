@@ -42,7 +42,7 @@ export default ({ children }) => {
       />
       <Navbar />
       <div className="main-body">
-        <Lottie />
+        <Lottie nightMode={nightMode}/>
         {children}
         <Mountains />
       </div>
