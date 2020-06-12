@@ -6,7 +6,7 @@ import { GlobalStyle } from "styles/GlobalStyle";
 import Navbar from "components/Navbar";
 import Footer from "./Footer";
 import Mountains from "./Mountains";
-import Lottie from './Lottie'
+import Lottie from "./Lottie";
 
 import { useWindowSize } from "utils/useWindowSize";
 
@@ -27,10 +27,10 @@ export default ({ children }) => {
     white: "#FFFFFF",
     footer: "16",
     header: "15",
-    minWidthToAdd: width > 1200 ? "0%" : width > 480 ? "0%" : "0%",
+    minWidthToSub: width > 1200 ? "20%" : width > 480 ? "20%" : "0%",
+    width,
     fontFamily: '"Roboto", sans-serif',
   };
-
 
   return (
     <ThemeProvider theme={theme}>
@@ -39,7 +39,7 @@ export default ({ children }) => {
       />
       <Navbar />
       <div className="main-body">
-        <Lottie/>
+        <Lottie />
         {children}
         <Mountains />
       </div>

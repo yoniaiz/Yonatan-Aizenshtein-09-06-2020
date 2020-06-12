@@ -111,22 +111,19 @@ export const GlobalStyle = createGlobalStyle`
 
   .weather-animations-container{
     width: 100vw;
-    height: 50%;
+    height: 40%;
     position : absolute;
     display: flex;
     align-items: center;
     justify-content: center;
 
     div{
-      top: 18%;
       width: 80%;
-    }
-
-    .sun{
+      max-width: 600px;
       position : absolute;
     }
-    .moon{
-      position : absolute;
+    .sun {
+      top: 18%;
     }
   }
 
@@ -149,13 +146,37 @@ export const GlobalStyle = createGlobalStyle`
 
   @media ${device.tablet} {
     html,body {
-      font-size: 18px;
+      font-size: min(2.5vw, 25px);
+    }
+    
+    header .navigation {
+      max-width: 280px;
     }
   }
 
+  @media ${device.laptopL} {
+    html,body {
+      font-size: min(2vw, 20px);
+    }
+    header .navigation {
+      max-width: 330px;
+    }
+
+    .weather-animations-container .sun {
+      top: -50%;
+      right: 5%;
+      width: 30% !important;
+    }
+
+    .weather-animations-container .moon {
+      top: -50%;
+      left: 5%;
+      width: 30% !important;
+    }
+  }
   @media ${device.desktop} {
     html,body {
-      font-size: 20px;
+      font-size: min(2vw, 30px);
     }
   }
 `;

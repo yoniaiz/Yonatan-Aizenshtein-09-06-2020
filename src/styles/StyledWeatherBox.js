@@ -6,6 +6,7 @@ export const StyledWeatherBox = styled.div`
   width: 100%;
   position: absolute;
   max-width: 1000px;
+  max-height: 600px;
   z-index: 15;
   right: 50%;
   bottom: 40%;
@@ -15,8 +16,15 @@ export const StyledWeatherBox = styled.div`
   padding: 10px;
 
   @media ${device.tablet} {
-    width: 90%;
+    width: 100%;
+    max-height: 450px;
     border-radius: 20px;
+    bottom: 50%;
+  }
+
+  @media ${device.laptop} {
+    max-height: 600px;
+    bottom: 40%;
   }
 
   .weather-box-header {

@@ -7,9 +7,12 @@ export const StyledMountains = styled.div`
     ${(props) => props.theme.mountainPurple} 61.35%
   );
   width: calc(
-    ${(props) => props.theme.minWidthToAdd} + ${(props) => props.width}
+    ${(props) => props.width} - ${(props) => props.theme.minWidthToSub}
   );
-  height: ${(props) => props.height};
+  height: calc(
+    ${(props) => props.height} +
+      ${(props) => parseInt(props.theme.minWidthToSub) / 5}%
+  );
   clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
   position: absolute;
   bottom: ${(props) => props.bottom};

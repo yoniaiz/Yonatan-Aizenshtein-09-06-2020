@@ -6,13 +6,15 @@ export const StyledHills = styled.div`
     ${(props) => props.theme.secondaryPurple} 0%,
     ${(props) => props.theme.mainPurple} 84%
   );
-  height: ${(props) => props.height};
+  height: calc(${(props) => props.height});
   border-radius: 50% / 100%;
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
   position: absolute;
   bottom: ${(props) => props.bottom};
   left: ${(props) => props.left};
-  width: calc(${props => props.theme.minWidthToAdd} + ${(props) => props.width});
+  width: calc(
+    ${(props) => props.width} - ${(props) => props.theme.minWidthToSub}
+  );
   z-index: ${(props) => props.zIndex};
 `;
