@@ -9,6 +9,8 @@ import DisplayAddressHeader from "./DisplayAddressHeader";
 
 export default () => {
   const { forecast, currentWeather } = useSelector((state) => state.weather);
+  const [measurement, setMeasurement] = React.useState("f");
+
   if (
     Object.keys(forecast).length === 0 ||
     Object.keys(currentWeather).length === 0
@@ -17,8 +19,12 @@ export default () => {
 
   return (
     <StyledWeatherBox>
-      <DisplayAddressHeader currentWeather={currentWeather} />
-      <FiveDayForecast forecast={forecast} />
+      <DisplayAddressHeader
+        currentWeather={currentWeather}
+        measurement={measurement}
+        setMeasurement={setMeasurement}
+      />
+      <FiveDayForecast forecast={forecast} measurement={measurement} />
     </StyledWeatherBox>
   );
 };

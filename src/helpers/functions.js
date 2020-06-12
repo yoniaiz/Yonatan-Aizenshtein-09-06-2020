@@ -15,7 +15,7 @@ function autocompleteAddressesParser(addresses) {
   return parsedAddresses;
 }
 
-const fToC = (f) => ((parseFloat(f) - 32) * 5) / 9;
+const fToC = (f) => Math.round(((parseFloat(f) - 32) * 5) / 9);
 
 function forecastParser(forecast) {
   const { Headline, DailyForecasts } = forecast;

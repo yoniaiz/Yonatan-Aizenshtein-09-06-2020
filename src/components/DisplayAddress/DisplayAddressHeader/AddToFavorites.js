@@ -1,10 +1,13 @@
 import React from "react";
-
+import ReactTooltip from "react-tooltip";
+//redux
 import { useSelector } from "react-redux";
-
+//components
 import heart from "assets/images/heartIcon.png";
 import hearIconOutline from "assets/images/hearIconOutline.png";
+//helpers
 import { helperFunctions } from "helpers/functions";
+//utils
 import { showNotification } from "utils/toastNotifications";
 
 export default () => {
@@ -50,7 +53,12 @@ export default () => {
       className="add-to-favorite-address pointer"
       onClick={handleAddToFavorites}
     >
-      <img src={like ? heart : hearIconOutline} />
+      <img
+        src={like ? heart : hearIconOutline}
+        data-tip={like ? "Remove from favorites" : "Add address to favorites"}
+        data-for="heart"
+      />
+      <ReactTooltip effect="solid" place="left" type="light" id="heart" />
     </div>
   );
 };
