@@ -19,10 +19,10 @@ export default class SwitchExample extends Component {
       <Switch
         onChange={this.handleChange}
         checked={this.state.checked}
-        width={60}
+        width={65}
         height={30}
-        uncheckedIcon={<img src={moon} style={{width:'55%', position:'absolute'}}/>}
-        checkedIcon={<img src={sun} style={{width:'100%'}}/>}
+        uncheckedIcon={<img src={moon} style={{width:'50%', position:'absolute'}}/>}
+        checkedIcon={<img src={sun} style={{width:'95%'}}/>}
         // onHandleColor={""}
         onColor={"#FDB86B"}
         className="toggle-day-time-switch"

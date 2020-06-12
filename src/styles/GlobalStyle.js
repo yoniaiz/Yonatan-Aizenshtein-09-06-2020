@@ -1,4 +1,5 @@
 import { createGlobalStyle } from "styled-components";
+import { device } from "constants/sizes";
 
 export const GlobalStyle = createGlobalStyle`
   body, html {
@@ -6,6 +7,7 @@ export const GlobalStyle = createGlobalStyle`
     width: 100vw;
     margin: 0;
     padding: 0;
+    font-size: 14px;
     overflow: hidden;
   }
 
@@ -17,7 +19,6 @@ export const GlobalStyle = createGlobalStyle`
     color: ${(props) => props.theme.white};
     background: ${(props) => props.background};
     font-family: ${(props) => props.theme.fontFamily};
-    font-size: 20px;
     position: relative;
   }
 
@@ -41,7 +42,7 @@ export const GlobalStyle = createGlobalStyle`
       margin-top: 1.2rem;
       margin-left: .5rem;
       margin-right: .5rem;
-      width: 65px;
+      width: 20%;
     }
 
    a{
@@ -49,9 +50,14 @@ export const GlobalStyle = createGlobalStyle`
     color: white;
    }
 
+   .toggle{
+    display: flex;
+    justify-content: flex-end;
+   }
+
     .navigation{
-      width: 20%;
-      min-width: 180px;
+      width: 50%;
+      min-width: 160px;
       display: flex;
       justify-content: space-between;
 
@@ -114,8 +120,6 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   .toggle-day-time-switch{
-    transform: rotate(90deg);
-    margin-top: 1rem;
     img {
       position: absolute;
       bottom: 0;
@@ -125,4 +129,6 @@ export const GlobalStyle = createGlobalStyle`
       margin: auto;
     }
   }
+
+
 `;

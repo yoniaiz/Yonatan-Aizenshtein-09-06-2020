@@ -9,7 +9,7 @@ export const StyledWeatherBox = styled.div`
   right: 50%;
   bottom: 40%;
   transform: translate(50%, 50%);
-  background: rgba(0, 0, 0, 0.65);
+  background: rgba(0, 0, 0, 0.75);
   border-radius: 0;
   padding: 10px;
 
@@ -70,7 +70,7 @@ export const StyledWeatherBox = styled.div`
       padding: 0 5%;
       font-size: 1.2em;
       .forecast {
-        text-align:center;
+        text-align: center;
 
         h4 {
           font-size: 1.3em;
