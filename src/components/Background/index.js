@@ -6,6 +6,8 @@ import { GlobalStyle } from "styles/GlobalStyle";
 import Navbar from "components/Navbar";
 import Footer from "./Footer";
 import Mountains from "./Mountains";
+import Lottie from './Lottie'
+
 import { useWindowSize } from "utils/useWindowSize";
 
 export default ({ children }) => {
@@ -37,6 +39,7 @@ export default ({ children }) => {
       />
       <Navbar />
       <div className="main-body">
+        <Lottie/>
         {children}
         <Mountains />
       </div>
