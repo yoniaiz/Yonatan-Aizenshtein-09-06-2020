@@ -9,19 +9,22 @@ import Mountains from "./Mountains";
 import Lottie from "./Lottie";
 
 import { useWindowSize } from "utils/useWindowSize";
+import { useSelector } from "react-redux";
 
 export default ({ children }) => {
+  const { nightMode } = useSelector((state) => state.ui);
+
   const size = useWindowSize();
   if (!size || !size.width) return null;
 
   const { width } = size;
 
   const theme = {
-    mainBlue: "#2D4159",
-    secondaryBlue: "#0677A1",
+    mainBlue: nightMode ? "#0677A1" : "#2D4159",
+    secondaryBlue: nightMode ? "#2D4159" : "#0677A1",
     yellow: "#FDB86B",
-    mainPurple: "#59253A",
-    secondaryPurple: "#895061",
+    mainPurple: nightMode ? "#895061" : "#59253A",
+    secondaryPurple: nightMode ? "#59253A" : "#895061",
     mountainPurple: "#78244C",
     black: "#000000",
     white: "#FFFFFF",

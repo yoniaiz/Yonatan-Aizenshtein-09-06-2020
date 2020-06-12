@@ -4,14 +4,29 @@ import Switch from "react-switch";
 import sun from "assets/images/sun.png";
 import moon from "assets/images/moon.png";
 
-export default class SwitchExample extends Component {
-  constructor() {
-    super();
-    this.state = { checked: false };
-  }
+//redux
+import { toggleNightMode } from "redux-store/actions";
+import { connect } from "react-redux";
 
-  handleChange = (checked) => {
-    this.setState({ checked });
+class SwitchExample extends Component {
+  state = {
+    checked: false,
+  };
+
+  componentDidMount = () => {
+    const { nightMode } = this.props;
+
+    this.setState({ checked: !nightMode });
+  };
+
+  componentDidUpdate = () => {
+    const { nightMode } = this.props;
+    if (this.state.checked !== !nightMode)
+      this.setState({ checked: !nightMode });
+  };
+
+  handleChange = () => {
+    this.props.toggleNightMode();
   };
 
   render() {
@@ -21,8 +36,10 @@ export default class SwitchExample extends Component {
         checked={this.state.checked}
         width={65}
         height={30}
-        uncheckedIcon={<img src={moon} style={{width:'50%', position:'absolute'}}/>}
-        checkedIcon={<img src={sun} style={{width:'95%'}}/>}
+        uncheckedIcon={
+          <img src={moon} style={{ width: "50%", position: "absolute" }} />
+        }
+        checkedIcon={<img src={sun} style={{ width: "95%" }} />}
         // onHandleColor={""}
         onColor={"#FDB86B"}
         className="toggle-day-time-switch"
@@ -30,3 +47,11 @@ export default class SwitchExample extends Component {
     );
   }
 }
+
+const mapStateToProps = ({ ui }) => {
+  return {
+    nightMode: ui.nightMode,
+  };
+};
+
+export default connect(mapStateToProps, { toggleNightMode })(SwitchExample);
