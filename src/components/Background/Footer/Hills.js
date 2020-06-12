@@ -13,9 +13,15 @@ export default () => {
     const notPhone = width > 767;
 
     setHills([
-      helperFunctions.generateDynamicComponent("80%", "75%", "-50px", "0", 10),
       helperFunctions.generateDynamicComponent(
-        "60%",
+        notPhone ? "90%" : "80%",
+        notPhone ? "80%" : "75%",
+        notPhone ? "-150px" : "-50px",
+        "0",
+        10
+      ),
+      helperFunctions.generateDynamicComponent(
+        notPhone ? "75%" : "60%",
         notPhone ? "60%" : "85%",
         notPhone ? "30%" : "50%",
         "0",
