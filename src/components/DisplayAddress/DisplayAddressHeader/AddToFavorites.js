@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import heart from "assets/images/heartIcon.png";
 import hearIconOutline from "assets/images/hearIconOutline.png";
 import { helperFunctions } from "helpers/functions";
+import { showNotification } from "utils/toastNotifications";
 
 export default () => {
   const [like, setLike] = React.useState(false);
@@ -33,6 +34,10 @@ export default () => {
       saveCurrentWeather[currentWeather.key] = { ...currentWeather };
 
       favoriteAddresses = { ...favoriteAddresses, ...saveCurrentWeather };
+      showNotification(
+        `You added ${currentWeather.name} to favorite list!`,
+        "success"
+      );
     }
 
     //update local storage and like icon
@@ -41,7 +46,10 @@ export default () => {
   };
 
   return (
-    <div className="add-to-favorite-address" onClick={handleAddToFavorites}>
+    <div
+      className="add-to-favorite-address pointer"
+      onClick={handleAddToFavorites}
+    >
       <img src={like ? heart : hearIconOutline} />
     </div>
   );

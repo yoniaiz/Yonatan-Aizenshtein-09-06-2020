@@ -138,6 +138,10 @@ export const GlobalStyle = createGlobalStyle`
     }
   }
 
+  .pointer {
+    cursor: pointer;
+  }
+
   @media ${device.mobileM} {
     html,body {
       font-size: 16px;
