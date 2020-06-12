@@ -58,6 +58,7 @@ export const GlobalStyle = createGlobalStyle`
     .navigation{
       width: 50%;
       min-width: 160px;
+      max-width: 220px;
       display: flex;
       justify-content: space-between;
 
@@ -130,5 +131,21 @@ export const GlobalStyle = createGlobalStyle`
     }
   }
 
+  @media ${device.mobileM} {
+    html,body {
+      font-size: 16px;
+    }
+  }
 
+  @media ${device.tablet} {
+    html,body {
+      font-size: 18px;
+    }
+  }
+
+  @media ${device.desktop} {
+    html,body {
+      font-size: 20px;
+    }
+  }
 `;

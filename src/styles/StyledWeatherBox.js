@@ -1,10 +1,11 @@
 import styled from "styled-components";
+import { device } from "constants/sizes";
 
 export const StyledWeatherBox = styled.div`
   height: 55vh;
-  maxwidth: 1400px;
   width: 100%;
   position: absolute;
+  max-width: 1000px;
   z-index: 15;
   right: 50%;
   bottom: 40%;
@@ -12,6 +13,11 @@ export const StyledWeatherBox = styled.div`
   background: rgba(0, 0, 0, 0.75);
   border-radius: 0;
   padding: 10px;
+
+  @media ${device.tablet} {
+    width: 90%;
+    border-radius: 20px;
+  }
 
   .weather-box-header {
     display: flex;
@@ -30,6 +36,7 @@ export const StyledWeatherBox = styled.div`
       text-align: right;
       img {
         width: 60%;
+        max-width: 80px;
       }
     }
     .deg-measure {
