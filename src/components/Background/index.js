@@ -23,9 +23,9 @@ export default ({ children }) => {
     mountainPurple: "#78244C",
     black: "#000000",
     white: "#FFFFFF",
-    footer: "15",
-    header: "10",
-    minWidthToAdd: width > 1200 ? "0%" : width > 480 ? "20%" : "40%",
+    footer: "16",
+    header: "15",
+    minWidthToAdd: width > 1200 ? "0%" : width > 480 ? "0%" : "0%",
     fontFamily: '"Roboto", sans-serif',
   };
 

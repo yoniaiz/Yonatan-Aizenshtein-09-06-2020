@@ -35,10 +35,13 @@ export const GlobalStyle = createGlobalStyle`
     position: relative;
     display: flex;
     justify-content: space-between;
-    font-size: 1.6rem;
+    font-size: 1.5rem;
 
     div{
-      margin: 25px 30px;
+      margin-top: 1.2rem;
+      margin-left: .5rem;
+      margin-right: .5rem;
+      width: 65px;
     }
 
    a{
@@ -47,7 +50,8 @@ export const GlobalStyle = createGlobalStyle`
    }
 
     .navigation{
-      width: 240px;
+      width: 20%;
+      min-width: 180px;
       display: flex;
       justify-content: space-between;
 
@@ -83,6 +87,7 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   .select-input-container{
+    margin-top: 10px;
     display:flex;
     justify-content: center;
   }

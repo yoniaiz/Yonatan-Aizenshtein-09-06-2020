@@ -9,67 +9,41 @@ export default () => {
   const regularMountains = [
     helperFunctions.generateDynamicComponent(
       "30%",
-      "20%",
-      "-80px",
-      "-60px",
-      1,
-      { snowHeight: generateSnow() }
-    ),
-    helperFunctions.generateDynamicComponent("45%", "27%", "5%", "-60px", 2, {
-      snowHeight: generateSnow(),
-    }),
-    helperFunctions.generateDynamicComponent(
-      "40%",
-      "30%",
-      "25%",
-      "-120px",
-      2,
-      { snowHeight: generateSnow() }
-    ),
-    helperFunctions.generateDynamicComponent(
-      "35%",
-      "32%",
-      "40%",
-      "-60px",
-      0,
-      { snowHeight: generateSnow() }
-    ),
-    helperFunctions.generateDynamicComponent(
-      "65%",
-      "36%",
-      "52%",
-      "-60px",
-      3,
-      { snowHeight: generateSnow() }
-    ),
-    helperFunctions.generateDynamicComponent(
-      "30%",
-      "18%",
-      "80%",
-      "-60px",
-      1,
-      { snowHeight: generateSnow() }
-    ),
-    helperFunctions.generateDynamicComponent(
-      "40%",
-      "25%",
       "85%",
-      "-80px",
-      2,
-      { snowHeight: generateSnow() }
+      "-130px",
+      "-60px",
+      1
     ),
+    helperFunctions.generateDynamicComponent("50%", "90%", "10%", "-60px", 3),
+    helperFunctions.generateDynamicComponent("50%", "80%", "55%", "-120px", 2),
   ];
 
-  
+  const backgroundMountains = [];
 
-  return regularMountains.map((mountain) => (
+  regularMountains.forEach((mount, index) => {
+    backgroundMountains[index] = {
+      ...mount,
+      height: `${parseInt(mount.height) + 20}%`,
+      width: `${parseInt(mount.width) + 8}%`,
+      left: `${parseInt(mount.left) - 10}${
+        mount.left.includes("%") ? "%" : "px"
+      }`,
+      zIndex: 0,
+      opacity: "0.9",
+    };
+  });
+
+  const mountains = [...regularMountains, ...backgroundMountains];
+
+  return mountains.map((mountain) => (
     <StyledMountains
       height={mountain.height}
       bottom={mountain.bottom}
       left={mountain.left}
       width={mountain.width}
       zIndex={mountain.zIndex}
-      snowHeight={mountain.snowHeight}
+      snowHeight={mountain.opacity ? 0 : generateSnow()}
+      opacity={mountain.opacity ? mountain.opacity : 1}
     >
       <div className="snow" />
     </StyledMountains>

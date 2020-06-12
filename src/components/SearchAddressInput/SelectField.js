@@ -11,12 +11,15 @@ export default ({
   const customStyles = {
     menu: (styles) => ({
       ...styles,
-      width: 320,
+      minWidth: 300,
+      maxWidth: 420,
+      width: "90%",
       color: "black",
       fontSize: "1rem",
       backgroundColor: "rgba(225,225,225,.8)",
-      zIndex: 1000
+      zIndex: 1000,
     }),
+    singleValue: (styles) => ({}),
     option: (styles, state) => ({
       ...styles,
       color: "black",
@@ -28,7 +31,9 @@ export default ({
     control: (styles) => ({
       // none of react-select's styles are passed to <Control />
       ...styles,
-      width: 320,
+      minWidth: 300,
+      maxWidth: 420,
+      width: "90%",
       fontSize: "1rem",
       borderRadius: "40px",
       padding: "2px 8px",

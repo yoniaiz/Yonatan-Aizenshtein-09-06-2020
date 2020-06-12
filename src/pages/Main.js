@@ -64,7 +64,6 @@ export default ({ match: { params } }) => {
   return (
     <ErrorBoundary>
       <div data-testid="main-page">
-        {content}
         <SearchAddressInput
           setSelectedAddress={setSelectedAddress}
           selectedAddress={selectedAddress}

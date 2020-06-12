@@ -6,14 +6,16 @@ export const StyledMountains = styled.div`
     ${(props) => props.theme.mainPurple} 40.28%,
     ${(props) => props.theme.mountainPurple} 61.35%
   );
-  width: calc(${props => props.theme.minWidthToAdd} + ${(props) => props.width});
+  width: calc(
+    ${(props) => props.theme.minWidthToAdd} + ${(props) => props.width}
+  );
   height: ${(props) => props.height};
   clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
   position: absolute;
   bottom: ${(props) => props.bottom};
   left: ${(props) => props.left};
   z-index: ${(props) => props.zIndex};
-
+  opacity: ${(props) => props.opacity};
   .snow {
     clip-path: polygon(
       50% 0%,

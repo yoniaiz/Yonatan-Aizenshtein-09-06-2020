@@ -18,7 +18,6 @@ export default () => {
   return (
     <StyledWeatherBox>
       <DisplayAddressHeader currentWeather={currentWeather} />
-      <div className="deg-measure">°F</div>
       <FiveDayForecast forecast={forecast} />
     </StyledWeatherBox>
   );

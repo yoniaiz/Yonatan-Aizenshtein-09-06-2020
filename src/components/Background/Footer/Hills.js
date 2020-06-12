@@ -4,15 +4,9 @@ import { helperFunctions } from "helpers/functions";
 
 export default () => {
   const hills = [
-    helperFunctions.generateDynamicComponent("100%", "45%", "-50px", "0", 10),
-    helperFunctions.generateDynamicComponent(
-      "65%",
-      "20%",
-      "calc(42%)",
-      "0",
-      9
-    ),
-    helperFunctions.generateDynamicComponent("120%", "55%", "47%", "-20px", 11),
+    helperFunctions.generateDynamicComponent("80%", "75%", "-50px", "0", 10),
+    helperFunctions.generateDynamicComponent("60%", "85%", "50%", "0", 9),
+    helperFunctions.generateDynamicComponent("100%", "85%", "47%", "-60px", 11),
   ];
 
   return (
