@@ -37,7 +37,7 @@ export const GlobalStyle = createGlobalStyle`
     justify-content: space-between;
     font-size: 1.5rem;
 
-    div{
+    .nav-section-margin{
       margin-top: 1.2rem;
       margin-left: .5rem;
       margin-right: .5rem;
@@ -90,5 +90,39 @@ export const GlobalStyle = createGlobalStyle`
     margin-top: 10px;
     display:flex;
     justify-content: center;
+  }
+
+  .weather-animations-container{
+    width: 100vw;
+    height: 50%;
+    position : absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    div{
+      top: 18%;
+      width: 80%;
+    }
+
+    .sun{
+      position : absolute;
+    }
+    .moon{
+      position : absolute;
+    }
+  }
+
+  .toggle-day-time-switch{
+    transform: rotate(90deg);
+    margin-top: 1rem;
+    img {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      left: 0;
+      top: 0;
+      margin: auto;
+    }
   }
 `;
