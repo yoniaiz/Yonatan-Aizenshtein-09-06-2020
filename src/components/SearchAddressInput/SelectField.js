@@ -12,9 +12,10 @@ export default ({
     menu: (styles) => ({
       ...styles,
       minWidth: 300,
-      maxWidth: 420,
+      maxWidth: 480,
       width: "90%",
       color: "black",
+      marginLeft: "0 auto",
       fontSize: "1rem",
       backgroundColor: "rgba(225,225,225,.8)",
       zIndex: 1000,
@@ -32,13 +33,17 @@ export default ({
       // none of react-select's styles are passed to <Control />
       ...styles,
       minWidth: 300,
-      maxWidth: 420,
+      maxWidth: 480,
       width: "90%",
       fontSize: "1rem",
       borderRadius: "40px",
       padding: "2px 8px",
+      margin: "0 auto",
       backgroundColor: "rgba(225,225,225,.8)",
       color: "black",
+      whiteSpace: "nowrap",
+      overflow: "hidden",
+      textOverflow: "ellipsis",
     }),
     indicatorsContainer: () => ({}),
     dropdownIndicator: (styles, state) => ({
@@ -56,6 +61,7 @@ export default ({
       styles={customStyles}
       data-testid="select-input"
       inputId="select-input"
+      className="select-input"
       inputValue={inputVal}
       loadingMessage="loading"
       placeholder="Select country"

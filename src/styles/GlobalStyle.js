@@ -95,8 +95,18 @@ export const GlobalStyle = createGlobalStyle`
 
   .select-input-container{
     margin-top: 10px;
+    width: 100vw;
     display:flex;
     justify-content: center;
+    .select-input{
+      width: 90%;
+      max-width: 480px;
+      min-width: 300px;
+      display:flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+    }
   }
 
   .weather-animations-container{
