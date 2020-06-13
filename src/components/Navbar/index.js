@@ -1,11 +1,11 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
 
-import Switch from './Switch';
+import Switch from "./Switch";
 
 export default () => {
   let location = useLocation();
-  const mainIsActive = location.pathname === "/";
+  const favoriteActive = location.pathname === "/favorite";
 
   return (
     <header>
@@ -13,14 +13,16 @@ export default () => {
         <Link to="/">HWT</Link>
       </div>
       <div className="navigation nav-section-margin">
-        <Link to="/" className={mainIsActive ? "active" : ""}>
+        <Link to="/" className={!favoriteActive ? "active" : ""}>
           Home
         </Link>
-        <Link to="/favorite" className={!mainIsActive ? "active" : ""}>
+        <Link to="/favorite" className={favoriteActive ? "active" : ""}>
           Favorite
         </Link>
       </div>
-      <div className="toggle nav-section-margin"><Switch/></div>
+      <div className="toggle nav-section-margin">
+        <Switch />
+      </div>
     </header>
   );
 };
