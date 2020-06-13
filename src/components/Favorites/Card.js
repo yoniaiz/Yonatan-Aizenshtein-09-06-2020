@@ -9,7 +9,7 @@ export default ({ address }) => {
 
   React.useEffect(() => {
     const temps = ["-5", "10", "27", "35"];
-    setWeather(helperFunctions.detectWeather(temps[generateTemp()]));
+    setWeather(helperFunctions.detectWeather(temps[generateTemp()])); //currentWeather.celsius
   }, []);
 
   return (

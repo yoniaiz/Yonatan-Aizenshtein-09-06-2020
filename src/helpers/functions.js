@@ -82,8 +82,8 @@ function getDayOfTheWeek(date) {
 
 function detectWeather(temp) {
   if (temp > 25) return "sun";
-  else if (temp < 25 && temp > 15) return "cloud";
-  else if (temp < 15 && temp > 0) return "rain";
+  else if (temp <= 25 && temp > 15) return "cloud";
+  else if (temp <= 15 && temp > 0) return "rain";
   else return "snow";
 }
 
