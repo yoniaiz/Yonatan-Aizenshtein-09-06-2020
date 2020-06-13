@@ -203,6 +203,7 @@ export const GlobalStyle = createGlobalStyle`
         font-size: 2.5rem;
         color: white;
         outline: none;
+        cursor: pointer;
 
         &:disabled{
           color: rgba(225,225,225,0.7);
