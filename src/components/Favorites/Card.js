@@ -2,9 +2,12 @@ import React from "react";
 import { StyledWeatherCard } from "styles";
 import Animation from "./LottieAnimation";
 import { helperFunctions } from "helpers/functions";
+import { Redirect } from "react-router-dom";
 
-export default ({ address }) => {
+export default ({ address, history }) => {
   const [weather, setWeather] = React.useState(null);
+  const [redirect, setRedirect] = React.useState(null);
+
   const generateTemp = () => Math.floor(Math.random() * 5);
 
   React.useEffect(() => {
@@ -12,8 +15,15 @@ export default ({ address }) => {
     setWeather(helperFunctions.detectWeather(temps[generateTemp()])); //currentWeather.celsius
   }, []);
 
+  if (redirect) {
+    return <Redirect to={`/main/${redirect}`} />;
+  }
+
   return (
-    <StyledWeatherCard className="pointer noselect">
+    <StyledWeatherCard
+      className="pointer noselect"
+      onClick={() => setRedirect(address.key)}
+    >
       <div className="card-header">
         {weather && <Animation display={weather} />}
       </div>

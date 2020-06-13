@@ -215,7 +215,9 @@ export const GlobalStyle = createGlobalStyle`
       }
 
       @media ${device.laptopL} {
+        button {
         font-size: 2rem;
+        }
         bottom: 4rem;
       }
 
