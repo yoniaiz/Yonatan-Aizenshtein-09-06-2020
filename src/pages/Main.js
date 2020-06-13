@@ -43,7 +43,7 @@ export default ({ match: { params } }) => {
         selectedAddress.key !== params.id)
     ) {
       // when id passed in params check if valid number
-      if (params.id.match(/^[0-9]+$/)) {
+      if (params.id.match(/^[0-9]+$/) && favorite[params.id]) {
         const address = favorite[params.id];
         setSelectedAddress(address);
         dispatch(getFiveDayForecast(address, false));

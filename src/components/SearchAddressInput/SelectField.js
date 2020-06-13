@@ -1,5 +1,6 @@
 import React from "react";
 import Select from "react-select";
+import { helperFunctions } from "helpers/functions";
 
 export default ({
   selectedAddress,
@@ -65,9 +66,12 @@ export default ({
       inputValue={inputVal}
       loadingMessage="loading"
       placeholder="Select country"
-      value={options.filter(
-        (address) => address.value === selectedAddress.value
-      )}
+      value={
+        options.length > 0 &&
+        helperFunctions.validObjectWithKeys(selectedAddress)
+          ? options.filter((address) => address.value === selectedAddress.value)
+          : null
+      }
       onChange={(selected) =>
         setSelectedAddress({ ...selected, selected: true })
       }
