@@ -69,6 +69,8 @@ export default () => {
         zIndex: 0,
         opacity: "0.9",
       };
+
+      regularMountains[index].snowHeight = generateSnow();
     });
 
     setMountains([...regularMountains, ...backgroundMountains]);
@@ -81,7 +83,7 @@ export default () => {
       left={mountain.left}
       width={mountain.width}
       zIndex={mountain.zIndex}
-      snowHeight={mountain.opacity ? 0 : generateSnow()}
+      snowHeight={mountain.snowHeight}
       opacity={mountain.opacity ? mountain.opacity : 1}
     >
       <div className="snow" />
