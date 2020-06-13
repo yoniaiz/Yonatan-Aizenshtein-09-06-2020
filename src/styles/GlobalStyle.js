@@ -136,6 +136,12 @@ export const GlobalStyle = createGlobalStyle`
     .sun {
       top: 18%;
     }
+    .cloud {
+      top: 18%;
+      right: 2%;
+      width: 90% !important;
+      z-index: 5;
+    }
   }
 
   .toggle-day-time-switch{
@@ -211,6 +217,13 @@ export const GlobalStyle = createGlobalStyle`
       top: -50%;
       right: 5%;
       width: 30% !important;
+    }
+
+    .weather-animations-container .cloud {
+        top: -55%;
+        right: 5%;
+        width: 30% !important;
+      }
     }
 
     .weather-animations-container .moon {

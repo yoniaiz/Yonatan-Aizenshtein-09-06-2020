@@ -16,7 +16,10 @@ export const StyledWeatherCard = styled.div`
   color: ${(props) => props.theme.mainBlue};
   display: flex;
   flex-direction: column;
-
+  transition: 1s;
+  &:hover {
+    transform: scale(1.1);
+  }
   @media ${device.mobileM} {
     font-size: 2rem;
   }

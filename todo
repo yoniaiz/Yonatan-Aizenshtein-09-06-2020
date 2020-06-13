@@ -1,0 +1,13 @@
+1. add weather cloud animation to main page.
+2. add paging to cards page.
+3. add redirect to main page on card click.
+4. create favorites card logic to get all favorites data.
+5. create redirect login on favorite click
+6. add c to f toggle button easier to understand.
+7. add toggle button to favorites card.
+8. add unit test to check the login of add to favorites and display.
+    add test of checking responsive display of cards.
+    add test to check if sun animation is not displayed on favorites page.
+    add tests to check night mode.
+9. upload to heroku.
+10. create Tavis ci integration for uploading to heroku

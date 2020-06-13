@@ -13,7 +13,7 @@ export default ({ address }) => {
   }, []);
 
   return (
-    <StyledWeatherCard>
+    <StyledWeatherCard className="pointer noselect">
       <div className="card-header">
         {weather && <Animation display={weather} />}
       </div>
