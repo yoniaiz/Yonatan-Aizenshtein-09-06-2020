@@ -47,10 +47,15 @@ export const StyledWeatherBox = styled.div`
         max-width: 80px;
       }
     }
-    .deg-measure {
+    .deg-measure  {
       width: 33%;
       text-align: center;
       font-size: 2em;
+
+      .other-deg-option{
+        font-size: .3em;
+        color: rgba(225,225,225,0.7);
+      }
     }
   }
   .forecast-container {

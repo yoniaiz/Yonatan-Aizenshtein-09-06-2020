@@ -1,5 +1,5 @@
 import React from "react";
-import { Redirect } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 //redux
 import { getFiveDayForecast, clearAutocomplete } from "redux-store/actions";
@@ -16,12 +16,12 @@ import DisplayAddress from "components/DisplayAddress";
 const { validObjectWithKeys } = helperFunctions;
 
 export default ({ match: { params } }) => {
+  const history = useHistory();
   const { currentLocation, favorite } = useSelector((state) => state.weather);
 
   const dispatch = useDispatch();
 
   const [selectedAddress, setSelectedAddress] = React.useState({});
-  let content = "main";
 
   React.useEffect(() => {
     if (validObjectWithKeys(selectedAddress) && selectedAddress.selected) {
@@ -48,7 +48,7 @@ export default ({ match: { params } }) => {
         setSelectedAddress(address);
         dispatch(getFiveDayForecast(address, false));
       } else {
-        return <Redirect to="/" />;
+        history.push("/");
       }
     }
 

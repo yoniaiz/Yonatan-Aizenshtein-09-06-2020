@@ -17,7 +17,8 @@ export default ({ setMeasurement, measurement }) => {
       data-for="measure"
       onClick={handleChange}
     >
-      °{measurement.toUpperCase()}
+      <span>°{measurement.toUpperCase()}</span>
+      <span className="other-deg-option">°{measure2.toUpperCase()[0]}</span>
       <ReactTooltip effect="solid" type="light" id="measure" />
     </div>
   );

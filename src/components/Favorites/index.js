@@ -33,6 +33,7 @@ export default ({ favorites }) => {
 
     // remove all null items from array
     cards = cards.filter(Boolean);
+    
     // create paging
     setPages([cards]);
   }, [width, favorites]);
