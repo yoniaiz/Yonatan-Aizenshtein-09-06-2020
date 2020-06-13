@@ -106,7 +106,6 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   .select-input-container{
-    margin-top: 10px;
     width: 100vw;
     display:flex;
     justify-content: center;
@@ -147,6 +146,27 @@ export const GlobalStyle = createGlobalStyle`
       left: 0;
       top: 0;
       margin: auto;
+    }
+  }
+
+  .favorites-container{
+    width: 100vw;
+    height: 90vh;
+    z-index: 1000;
+    position: relative;
+    display: flex;
+    align-item: center;
+    justify-content: center;
+    
+    .weather-card-container{
+      width: 80%;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: 1fr 1fr;
+      column-gap: 3%;
+      row-gap: 20px;
+      max-width: 1300px;
+      height: 80%;
     }
   }
 

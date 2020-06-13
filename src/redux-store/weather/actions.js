@@ -166,6 +166,7 @@ export const getCurrentWeather = (selectedAddress) => async () => {
       name: selectedAddress.city,
       text: WeatherText,
       isDayTime: IsDayTime,
+      key: selectedAddress.value,
       celsius: Metric.Value,
       fahrenheit: Imperial.Value,
       ...selectedAddress,

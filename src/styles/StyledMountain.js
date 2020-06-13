@@ -30,7 +30,7 @@ export const StyledMountains = styled.div`
       32% 57%,
       39% 35%
     );
-    background: white;
+    background: linear-gradient(90deg, #C4C4C4 37.94%, #FFFFFF 78.89%);
     position: absolute;
     top: 0;
     z-index: 1000;

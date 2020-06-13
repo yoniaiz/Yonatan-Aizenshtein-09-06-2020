@@ -19,8 +19,10 @@ export default () => {
     // detect if current weather is in favorites list
     if (helperFunctions.validObjectWithKeys(favoriteAddresses)) {
       const isFavorite = favoriteAddresses[parseInt(currentWeather.key)];
-      if (isFavorite && !like) {
+      if (isFavorite) {
         setLike(true);
+      }else {
+        setLike(false);
       }
     }
   }, [currentWeather]);
