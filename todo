@@ -1,4 +1,3 @@
-1. add weather cloud animation to main page.
 2. add paging to cards page.
 3. add redirect to main page on card click.
 4. create favorites card logic to get all favorites data.
@@ -11,3 +10,6 @@
     add tests to check night mode.
 9. upload to heroku.
 10. create Tavis ci integration for uploading to heroku
+11. check all helper functions
+12. add loaders
+13. add animation if needed

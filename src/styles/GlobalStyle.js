@@ -184,6 +184,41 @@ export const GlobalStyle = createGlobalStyle`
       @media ${device.laptopL} {
         grid-template: repeat(2, 1fr) / repeat(4, 1fr);
       }
+
+    }
+
+    .prev-and-next{
+      display: flex;
+      max-width: 300px;
+      width: 70%;
+      margin: 0 auto;
+      justify-content: space-between;
+      position: absolute;
+      bottom: 4rem;
+      font-weight: 500;
+
+      button{
+        background: transparent;
+        border: none;
+        font-size: 2.5rem;
+        color: white;
+        outline: none;
+
+        &:disabled{
+          color: rgba(225,225,225,0.7);
+        }
+      }
+
+      @media ${device.laptop} {
+        bottom: 6rem;
+      }
+
+      @media ${device.laptopL} {
+        font-size: 2rem;
+        bottom: 4rem;
+      }
+
+
     }
   }
 
