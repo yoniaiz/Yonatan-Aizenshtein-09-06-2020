@@ -172,10 +172,10 @@ export const GlobalStyle = createGlobalStyle`
       }
 
       @media ${device.tablet} {
-        grid-template: repeat(2, 1fr) / repeat(3, 1fr);
+        grid-template: repeat(2, 1fr) / repeat(2, 1fr);
       }
 
-      @media ${device.laptop} {
+      @media ${device.laptopL} {
         grid-template: repeat(2, 1fr) / repeat(4, 1fr);
       }
     }

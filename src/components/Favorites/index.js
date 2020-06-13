@@ -22,10 +22,10 @@ export default () => {
         <div className="weather-card-container">
           {Object.keys(favorites).map((address, index) => {
             if (
-              (width < 375 && index > 0) ||
-              (width >= 375 && width < 768 && index > 1) || 
-              (width >= 768 && width < 1024 && index > 5) ||
-              (width >= 1024 && index > 7)
+              (width < 375 && index > 0) || //display on small mobile
+              (width >= 375 && width < 768 && index > 1) || //display on large mobile
+              (width >= 768 && width < 1440 && index > 3) || //display on tablet
+              (width >= 1440 && index > 7) // //display on computer
             )
               return null;
             return <Card address={favorites[address]} />;
