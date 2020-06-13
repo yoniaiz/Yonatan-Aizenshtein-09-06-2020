@@ -93,4 +93,5 @@ export const helperFunctions = {
   validObjectWithKeys,
   generateDynamicComponent,
   getDayOfTheWeek,
+  detectWeather
 };
