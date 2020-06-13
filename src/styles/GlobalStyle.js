@@ -161,12 +161,23 @@ export const GlobalStyle = createGlobalStyle`
     .weather-card-container{
       width: 80%;
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      grid-template-rows: 1fr 1fr;
+      grid-template: 1fr / 1fr;
       column-gap: 3%;
       row-gap: 20px;
       max-width: 1300px;
       height: 80%;
+
+      @media ${device.mobileM} {
+        grid-template: repeat(2, 1fr) / repeat(1, 1fr);
+      }
+
+      @media ${device.tablet} {
+        grid-template: repeat(2, 1fr) / repeat(3, 1fr);
+      }
+
+      @media ${device.laptop} {
+        grid-template: repeat(2, 1fr) / repeat(4, 1fr);
+      }
     }
   }
 
