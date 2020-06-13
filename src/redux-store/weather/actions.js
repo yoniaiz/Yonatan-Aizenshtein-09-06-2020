@@ -4,6 +4,7 @@ import {
   FIVE_DAY_FORECAST,
   CURRENT_WEATHER,
   RESET,
+  GET_FAVORITES,
 } from "./types";
 
 import { api, CLEAR, SUCCESS } from "constants/index";
@@ -169,7 +170,6 @@ export const getCurrentWeather = (selectedAddress) => async () => {
       key: selectedAddress.value,
       celsius: Metric.Value,
       fahrenheit: Imperial.Value,
-      ...selectedAddress,
     };
 
     dispatcher.success(parsedCurrentWeather);
@@ -177,5 +177,55 @@ export const getCurrentWeather = (selectedAddress) => async () => {
     dispatcher.failure();
   } finally {
     dispatcher.loadingDone();
+  }
+};
+
+export const getAllFavoritesCurrentWeather = (
+  cachedFavorites,
+  currentFavorites
+) => () => {
+  dispatcher.action = GET_FAVORITES;
+  dispatcher.request(true);
+
+  const filteredFavorites = [];
+
+  for (let [key, value] of Object.entries(cachedFavorites)) {
+    if (!currentFavorites[key]) {
+      filteredFavorites.push(value);
+    }
+  }
+
+  try {
+    Promise.all(
+      filteredFavorites.map((favorite) =>
+        fetch(`${api.currentConditions}${favorite.key}?${api.apiKey}`)
+      )
+    )
+      .then((responses) => Promise.all(responses.map((res) => res.json())))
+      .then((jsons) => {
+        let favorites = jsons.map((json, index) => {
+          const {
+            WeatherText,
+            IsDayTime,
+            Temperature: { Imperial, Metric },
+          } = json[0];
+
+          const address = filteredFavorites[index];
+
+          return {
+            name: address.city,
+            text: WeatherText,
+            isDayTime: IsDayTime,
+            key: address.value,
+            celsius: Metric.Value,
+            fahrenheit: Imperial.Value,
+          };
+        });
+
+        dispatcher.success(favorites);
+        dispatcher.loadingDone();
+      });
+  } catch (e) {
+    console.log(e);
   }
 };

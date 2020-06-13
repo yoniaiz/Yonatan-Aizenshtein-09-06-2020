@@ -1,15 +1,11 @@
 import React from "react";
 //styled components
 import { ThemeContext } from "styled-components";
-//helpers
-import { helperFunctions } from "helpers/functions";
-//utils
-import { showNotification } from "utils/toastNotifications";
 //components
 import Card from "./Card";
 import PrevAndNext from "./PrevAndNext";
 
-export default () => {
+export default ({ favorites }) => {
   const [notDisplayedCards, setNotDisplayedCards] = React.useState([]);
   const [pages, setPages] = React.useState([]); // setting paging to display all cards
   const [currentPage, setCurrentPage] = React.useState(0); // current card display
@@ -17,34 +13,29 @@ export default () => {
   const { width } = React.useContext(ThemeContext);
 
   React.useEffect(() => {
-    const favorites = JSON.parse(localStorage.getItem("favorites"));
     setNotDisplayedCards([]);
 
-    if (!helperFunctions.validObjectWithKeys(favorites)) {
-      showNotification("You did not choose any favorite addresses");
-    } else {
-      let cards = Object.keys(favorites).map((address, index) => {
-        if (
-          (width < 375 && index > 0) || //display on small mobile
-          (width >= 375 && width < 768 && index > 1) || //display on large mobile
-          (width >= 768 && width < 1440 && index > 3) || //display on tablet
-          (width >= 1440 && index > 7) // //display on computer
-        ) {
-          notDisplayedCards.push(<Card address={favorites[address]} />);
-          setNotDisplayedCards([...notDisplayedCards]);
+    let cards = Object.keys(favorites).map((address, index) => {
+      if (
+        (width < 375 && index > 0) || //display on small mobile
+        (width >= 375 && width < 768 && index > 1) || //display on large mobile
+        (width >= 768 && width < 1440 && index > 3) || //display on tablet
+        (width >= 1440 && index > 7) // //display on computer
+      ) {
+        notDisplayedCards.push(<Card address={favorites[address]} />);
+        setNotDisplayedCards([...notDisplayedCards]);
 
-          return null;
-        }
+        return null;
+      }
 
-        return <Card address={favorites[address]} />;
-      });
+      return <Card address={favorites[address]} />;
+    });
 
-      // remove all null items from array
-      cards = cards.filter(Boolean);
-      // create paging
-      setPages([cards]);
-    }
-  }, [width]);
+    // remove all null items from array
+    cards = cards.filter(Boolean);
+    // create paging
+    setPages([cards]);
+  }, [width, favorites]);
 
   return (
     <>

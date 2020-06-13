@@ -5,10 +5,11 @@ import {
   FIVE_DAY_FORECAST,
   CURRENT_WEATHER,
   RESET,
+  GET_FAVORITES,
 } from "./types";
 
 export const WEATHER_INIT = {
-  favorite: [],
+  favorite: {},
   currentLocation: {},
   autocomplete: [],
   forecast: {},
@@ -60,6 +61,12 @@ export const weatherReducer = (state = WEATHER_INIT, { type, payload }) => {
       return {
         ...state,
         currentWeather: { ...payload },
+      };
+
+    case `${GET_FAVORITES}${SUCCESS}`:
+      return {
+        ...state,
+        favorite: { ...state.favorite, ...payload },
       };
 
     default:
