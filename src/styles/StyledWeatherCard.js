@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { device } from 'constants/sizes'
+import { device } from "constants/sizes";
 
 export const StyledWeatherCard = styled.div`
   width: 80%;
@@ -17,11 +17,11 @@ export const StyledWeatherCard = styled.div`
   display: flex;
   flex-direction: column;
 
-  @media ${device.mobileM}{
+  @media ${device.mobileM} {
     font-size: 2rem;
   }
 
-  @media ${device.laptop}{
+  @media ${device.laptop} {
     font-size: 1.5rem;
   }
 
@@ -29,11 +29,12 @@ export const StyledWeatherCard = styled.div`
     flex-basis: 70%;
     position: relative;
 
-    .card-weather-animation{
+    .card-weather-animation {
       position: absolute;
       right: 0;
       top: 0;
       width: 65%;
+      max-width: 120px;
     }
   }
 
