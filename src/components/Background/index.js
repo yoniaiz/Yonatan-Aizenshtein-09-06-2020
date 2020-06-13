@@ -1,4 +1,5 @@
 import React from "react";
+import { useLocation } from "react-router-dom";
 //styled components
 import { ThemeProvider } from "styled-components";
 import { GlobalStyle } from "styles/GlobalStyle";
@@ -13,6 +14,7 @@ import { useSelector } from "react-redux";
 
 export default ({ children }) => {
   const { nightMode } = useSelector((state) => state.ui);
+  let location = useLocation();
 
   const size = useWindowSize();
   if (!size || !size.width) return null;
@@ -42,7 +44,7 @@ export default ({ children }) => {
       />
       <Navbar />
       <div className="main-body">
-        <Lottie nightMode={nightMode}/>
+        {location.pathname !== "/favorite" && <Lottie nightMode={nightMode} />}
         {children}
         <Mountains />
       </div>
