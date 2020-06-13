@@ -1,21 +1,27 @@
 import React from "react";
 import { StyledWeatherCard } from "styles";
-import Animation from "./LottieAnimation";
-import { helperFunctions } from "helpers/functions";
 import { Redirect } from "react-router-dom";
+
+//redux
+import { updateCurrentWeather } from "redux-store/actions";
+import { useDispatch } from "react-redux";
+//helpers
+import { helperFunctions } from "helpers/functions";
+//components
+import Animation from "./LottieAnimation";
 
 export default ({ address, history }) => {
   const [weather, setWeather] = React.useState(null);
   const [redirect, setRedirect] = React.useState(null);
 
-  const generateTemp = () => Math.floor(Math.random() * 5);
+  const dispatch = useDispatch();
 
   React.useEffect(() => {
-    const temps = ["-5", "10", "27", "35"];
-    setWeather(helperFunctions.detectWeather(temps[generateTemp()])); //currentWeather.celsius
+    setWeather(helperFunctions.detectWeather(address.celsius));
   }, []);
 
   if (redirect) {
+    dispatch(updateCurrentWeather(address))
     return <Redirect to={`/main/${redirect}`} />;
   }
 

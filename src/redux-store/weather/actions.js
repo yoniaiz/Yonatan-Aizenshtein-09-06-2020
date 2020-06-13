@@ -126,7 +126,10 @@ export const clearAutocomplete = () => ({
   type: `${AUTOCOMPLETE}${CLEAR}`,
 });
 
-export const getFiveDayForecast = (selectedAddress) => async (dispatch) => {
+export const getFiveDayForecast = (
+  selectedAddress,
+  getCurrentLocation = true
+) => async (dispatch) => {
   dispatcher.action = FIVE_DAY_FORECAST;
 
   dispatcher.request(true);
@@ -138,7 +141,7 @@ export const getFiveDayForecast = (selectedAddress) => async (dispatch) => {
 
     dispatcher.success(parsedForecast);
     //get current weather if five day forecast was successful
-    dispatch(getCurrentWeather(selectedAddress));
+    if (getCurrentLocation) dispatch(getCurrentWeather(selectedAddress));
   } catch {
     dispatcher.failure();
   } finally {
@@ -180,6 +183,11 @@ export const getCurrentWeather = (selectedAddress) => async () => {
   }
 };
 
+export const updateCurrentWeather = (payload) => ({
+  type: `${CURRENT_WEATHER}${SUCCESS}`,
+  payload,
+});
+
 export const getAllFavoritesCurrentWeather = (
   cachedFavorites,
   currentFavorites
@@ -189,6 +197,7 @@ export const getAllFavoritesCurrentWeather = (
 
   const filteredFavorites = [];
 
+  // get all favorites that did not yet added to favorites on redux
   for (let [key, value] of Object.entries(cachedFavorites)) {
     if (!currentFavorites[key]) {
       filteredFavorites.push(value);
@@ -196,6 +205,7 @@ export const getAllFavoritesCurrentWeather = (
   }
 
   try {
+    // fetch all data and resolve
     Promise.all(
       filteredFavorites.map((favorite) =>
         fetch(`${api.currentConditions}${favorite.key}?${api.apiKey}`)
