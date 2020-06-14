@@ -57,6 +57,7 @@ export const getCurrentLocation = () => async (dispatch) => {
         );
 
         const currentAddress = await response.json();
+
         const { LocalizedName, Country, Key } = currentAddress;
 
         const parsedCurrentAddress = {
@@ -71,7 +72,8 @@ export const getCurrentLocation = () => async (dispatch) => {
 
         dispatch(setAddressWithDetails(parsedCurrentAddress));
       } catch (e) {
-        dispatch(setAddressWithDetails(telAvivForFallback));
+        dispatcher.failure({ message: "There is problems with the server..." });
+        dispatcher.loadingDone(true);
       }
     }
 
