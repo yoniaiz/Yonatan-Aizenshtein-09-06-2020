@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 //styled components
 import { ThemeContext } from "styled-components";
 //components
@@ -22,18 +22,26 @@ export default ({ favorites }) => {
         (width >= 768 && width < 1440 && index > 3) || //display on tablet
         (width >= 1440 && index > 7) // //display on computer
       ) {
-        notDisplayedCards.push(<Card address={favorites[address]} />);
+        notDisplayedCards.push(
+          <Fragment key={index}>
+            <Card address={favorites[address]} />
+          </Fragment>
+        );
         setNotDisplayedCards([...notDisplayedCards]);
 
         return null;
       }
 
-      return <Card address={favorites[address]} />;
+      return (
+        <Fragment key={index}>
+          <Card address={favorites[address]} />
+        </Fragment>
+      );
     });
 
     // remove all null items from array
     cards = cards.filter(Boolean);
-    
+
     // create paging
     setPages([cards]);
   }, [width, favorites]);
