@@ -8,7 +8,7 @@ import Cloud from "./Cloud";
 export default ({ nightMode }) => {
   return (
     <div className="weather-animations-container">
-      <Cloud />
+      <Cloud nightMode={nightMode} />
       {nightMode ? (
         <LottieLoader animationJson={moon} classes={"moon"} />
       ) : (

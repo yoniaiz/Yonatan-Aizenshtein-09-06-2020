@@ -17,11 +17,11 @@ export default ({ animationJson, classes = "" }) => {
 
   let animation = null;
 
-  const loadAnimation = () => {
+  const loadAnimation = (currentId) => {
     lottie.loadAnimation({
       container: animation,
       renderer: "svg",
-      name: `${id}animation`,
+      name: `${currentId}animation`,
       loop: true,
       autoplay: true,
       animationData: animationJson,
@@ -29,8 +29,9 @@ export default ({ animationJson, classes = "" }) => {
   };
 
   const newAnimation = () => {
-    setId(makeid(10));
-    loadAnimation();
+    const currentId = makeid(10);
+    setId(currentId);
+    loadAnimation(currentId);
   };
 
   React.useEffect(() => {
@@ -39,7 +40,7 @@ export default ({ animationJson, classes = "" }) => {
 
   React.useEffect(() => {
     if (id) {
-      lottie.destroy();
+      lottie.destroy(`${id}animation`);
       newAnimation();
     }
   }, [animationJson]);

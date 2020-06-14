@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 import { helperFunctions } from "helpers/functions";
 import LottieLoader from "utils/LottieLoader";
 
-export default () => {
+export default ({ nightMode }) => {
   const { currentWeather } = useSelector((state) => state.weather);
   const [type, setType] = React.useState(null);
 
@@ -22,7 +22,7 @@ export default () => {
     type !== "sun" && (
       <LottieLoader
         animationJson={type === "cloud" ? wind : rain}
-        classes="cloud"
+        classes={`cloud ${nightMode ? "night-mode" : ""}`}
       />
     )
   );

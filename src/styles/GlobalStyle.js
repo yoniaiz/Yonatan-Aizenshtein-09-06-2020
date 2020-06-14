@@ -198,6 +198,7 @@ export const GlobalStyle = createGlobalStyle`
     .sun, .moon {
       top: 18%;
     }
+    
     .cloud {
       top: 18%;
       right: 2%;
@@ -323,6 +324,9 @@ export const GlobalStyle = createGlobalStyle`
         top: -55%;
         right: 5%;
         width: 30% !important;
+      }
+      .weather-animations-container .night-mode {
+        right: 65%;
       }
       .weather-animations-container .moon {
         top: -50%;
