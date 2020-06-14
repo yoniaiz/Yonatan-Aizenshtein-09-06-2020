@@ -7,13 +7,11 @@ import {
   useHistory,
 } from "react-router-dom";
 //redux
-import { getCurrentLocation, setAddressWithDetails } from "redux-store/actions";
+import { getCurrentLocation } from "redux-store/actions";
 import { useDispatch, useSelector } from "react-redux";
 //utils
 import LoadingPage from "utils/LoadingPage";
 import Loader from "utils/Loader";
-//helpers
-import { helperFunctions } from "helpers/functions";
 //components
 import Background from "components/Background";
 // Lazy
@@ -33,13 +31,13 @@ export default () => {
       history.push("/");
     }
 
-    // dispatch(getCurrentLocation());
+    dispatch(getCurrentLocation());
   }, []);
 
   return (
     <>
-      {pageLoader && <LoadingPage />}
-      {loading && <Loader />}
+      {pageLoader > 0 && <LoadingPage />}
+      {loading > 0 && <Loader />}
       <Background>
         <Suspense fallback={<LoadingPage />}>
           <Switch>

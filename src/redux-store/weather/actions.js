@@ -7,7 +7,13 @@ import {
   GET_FAVORITES,
 } from "./types";
 
-import { api, CLEAR, SUCCESS } from "constants/index";
+import {
+  api,
+  CLEAR,
+  SUCCESS,
+  PAGE_LOADER,
+  PAGE_LOADING_DONE,
+} from "constants/index";
 import { helperFunctions } from "helpers/functions";
 
 import Dispatcher from "helpers/classes/Dispatcher";
@@ -87,6 +93,8 @@ export const getCurrentLocation = () => async (dispatch) => {
     console.log(e);
     dispatch(setAddressWithDetails(telAvivForFallback));
   }
+
+  dispatcher.loadingDone(true);
 };
 
 export const setAddressWithDetails = (option) => (dispatch) => {
@@ -101,8 +109,6 @@ export const setAddressWithDetails = (option) => (dispatch) => {
 export const placesAutocomplete = (str) => async () => {
   dispatcher.action = AUTOCOMPLETE;
 
-  dispatcher.request();
-
   try {
     const response = await fetch(`${api.autocomplete}?${api.apiKey}&q=${str}`);
     const autocompletedAddresses = await response.json();
@@ -115,7 +121,7 @@ export const placesAutocomplete = (str) => async () => {
   } catch (e) {
     dispatcher.failure({ message: "Something went wrong" });
   } finally {
-    dispatcher.loadingDone();
+    dispatcher.loadingDone(true);
   }
 };
 
@@ -204,8 +210,9 @@ export const getAllFavoritesCurrentWeather = (
   cachedFavorites,
   currentFavorites
 ) => (dispatch) => {
-  dispatcher.action = GET_FAVORITES;
-  dispatcher.request(true, true);
+  dispatch({
+    type: PAGE_LOADER,
+  });
 
   const filteredFavorites = [];
 
@@ -215,7 +222,7 @@ export const getAllFavoritesCurrentWeather = (
       filteredFavorites.push(value);
     }
   }
-  debugger;
+
   try {
     // fetch all data and resolve
     Promise.all(
@@ -225,8 +232,8 @@ export const getAllFavoritesCurrentWeather = (
     )
       .then((responses) => Promise.all(responses.map((res) => res.json())))
       .then((jsons) => {
-        let favorites = jsons.map((json, index) => {
-          try {
+        try {
+          let favorites = jsons.map((json, index) => {
             const {
               WeatherText,
               IsDayTime,
@@ -234,7 +241,7 @@ export const getAllFavoritesCurrentWeather = (
             } = json[0];
 
             const address = filteredFavorites[index];
-            debugger;
+
             return {
               name: address.city || address.name,
               text: WeatherText,
@@ -244,31 +251,36 @@ export const getAllFavoritesCurrentWeather = (
               celsius: Metric.Value,
               fahrenheit: Imperial.Value,
             };
-          } catch (e) {
-            console.log(e);
-            dispatcher.failure({ message: "Something went wrong.." });
-            dispatcher.loadingDone();
-          }
-        });
+          });
 
-        const favoritesAsObject = {};
+          const favoritesAsObject = {};
 
-        favorites.forEach((fav) => {
-          favoritesAsObject[fav.key] = { ...fav };
-        });
+          favorites.forEach((fav) => {
+            favoritesAsObject[fav.key] = { ...fav };
+          });
 
-        localStorage.setItem("favorites", JSON.stringify(favoritesAsObject));
+          localStorage.setItem("favorites", JSON.stringify(favoritesAsObject));
 
-        dispatch({
-          type: `${GET_FAVORITES}${SUCCESS}`,
-          payload: { ...favoritesAsObject },
-        });
+          dispatch({
+            type: `${GET_FAVORITES}${SUCCESS}`,
+            payload: { ...favoritesAsObject },
+          });
 
-        dispatcher.loadingDone();
+          dispatch({
+            type: PAGE_LOADING_DONE,
+          });
+        } catch (e) {
+          console.log(e);
+          //TODO add error message
+          dispatch({
+            type: PAGE_LOADING_DONE,
+          });
+        }
       });
   } catch (e) {
     console.log(e);
-    dispatcher.failure({ message: "Something went wrong.." });
-    dispatcher.loadingDone();
+    dispatch({
+      type: PAGE_LOADING_DONE,
+    });
   }
 };

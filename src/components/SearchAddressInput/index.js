@@ -1,6 +1,4 @@
 import React from "react";
-import Select from "react-select";
-
 //redux
 import { placesAutocomplete, clearAutocomplete } from "redux-store/actions";
 import { useDispatch, useSelector } from "react-redux";

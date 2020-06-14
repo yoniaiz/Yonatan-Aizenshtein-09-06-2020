@@ -11,7 +11,7 @@ export default () => {
     <header>
       <div className="logo nav-section-margin">
         <Link to="/">
-          <img src={logo} />
+          <img src={logo} alt="logo"/>
         </Link>
       </div>
       <div className="navigation nav-section-margin">

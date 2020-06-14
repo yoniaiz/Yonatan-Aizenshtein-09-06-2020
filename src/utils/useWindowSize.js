@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 // Hook
 export function useWindowSize() {
   const isClient = typeof window === "object";
@@ -10,9 +10,9 @@ export function useWindowSize() {
     };
   }
 
-  const [windowSize, setWindowSize] = useState(getSize);
+  const [windowSize, setWindowSize] = React.useState(getSize);
 
-  useEffect(() => {
+  React.useEffect(() => {
     if (!isClient) {
       return false;
     }

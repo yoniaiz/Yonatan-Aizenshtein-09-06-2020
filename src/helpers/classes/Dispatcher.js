@@ -7,6 +7,7 @@ import {
   PAGE_LOADER,
   SUCCESS,
   FAILURE,
+  PAGE_LOADING_DONE,
 } from "constants/index";
 
 /**
@@ -105,9 +106,15 @@ export default class Dispatcher {
   /**
    * stop all loaders
    */
-  loadingDone() {
-    this._dispatch({
-      type: LOADING_DONE,
-    });
+  loadingDone(pageLoader = false) {
+    if (pageLoader) {
+      this._dispatch({
+        type: PAGE_LOADING_DONE,
+      });
+    } else {
+      this._dispatch({
+        type: LOADING_DONE,
+      });
+    }
   }
 }

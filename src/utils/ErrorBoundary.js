@@ -31,8 +31,5 @@ class ErrorBoundary extends React.Component {
   }
 }
 
-const mapStateToProps = ({}) => {
-  return {};
-};
 
-export default connect(mapStateToProps, { reset })(ErrorBoundary);
+export default connect(null, { reset })(ErrorBoundary);

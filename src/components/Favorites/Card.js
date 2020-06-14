@@ -20,7 +20,7 @@ export default ({ address, history }) => {
 
   React.useEffect(() => {
     setWeather(helperFunctions.detectWeather(address.celsius));
-  }, []);
+  }, [address,address.celsius]);
 
   if (redirect) {
     dispatch(updateCurrentWeather(address));

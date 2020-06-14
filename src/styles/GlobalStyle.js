@@ -119,7 +119,7 @@ export const GlobalStyle = createGlobalStyle`
 
     .logo{
       img{
-        width: 60%;
+        width: 70%;
         min-width: 80px;
       }
     }

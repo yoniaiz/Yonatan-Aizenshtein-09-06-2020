@@ -47,6 +47,10 @@ export default ({
       textOverflow: "ellipsis",
     }),
     indicatorsContainer: () => ({}),
+    loadingIndicator:(styles => ({
+      ...styles,
+      color:'black'
+    })),
     dropdownIndicator: (styles, state) => ({
       ...styles,
       color: "rgba(0,0,0,0.6)",

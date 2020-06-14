@@ -1,8 +1,0 @@
-8. add unit test to check the login of add to favorites and display.
-    add test of checking responsive display of cards.
-    add test to check if sun animation is not displayed on favorites page.
-    add tests to check night mode.
-9. upload to heroku.
-10. create Tavis ci integration for uploading to heroku
-11. check all helper functions
-13. add animation if needed
