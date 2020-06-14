@@ -42,17 +42,61 @@ export const GlobalStyle = createGlobalStyle`
     position: relative;
   }
 
-  .main-loading-page{
+  .full-screen-wrapper{
     position: fixed;
     top: 0;
     left: 0;
     width: 100vw;
     height: 100vh;
-    background: white;
-    z-index: 100000;
     display: flex;
     align-items: center;
     justify-content: center;
+    z-index: 100000;
+  }
+
+  .main-loading-page{
+    background: white;
+  }
+
+  .loading-page{
+    background: rgba(0,0,0,0.7);
+    width: 100%;
+    height: 100%;
+  }
+  
+  .loader-container{
+    display: flex;
+    flex-direction: column;
+    align-item: center;
+    text-align: center;
+    position: relative;
+
+    .loader {
+      margin: 0 auto;
+      width: 80%;
+    }
+
+    .dots {
+      animation-name: fadeIn;
+      animation-iteration-count: infinite;
+      animation-duration: 2s;
+      animation-timing-function: ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      0% {opacity: 0}
+      50% {opacity: 1}
+      100% {opacity: 0}
+    }
+
+    h1{
+      margin:0;
+      font-size: 2rem;
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+    }
   }
 
   header {

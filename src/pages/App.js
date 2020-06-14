@@ -6,15 +6,16 @@ import {
   useLocation,
   useHistory,
 } from "react-router-dom";
-
-import { helperFunctions } from "helpers/functions";
-//components
-import Background from "components/Background";
 //redux
 import { getCurrentLocation, setAddressWithDetails } from "redux-store/actions";
 import { useDispatch, useSelector } from "react-redux";
+//utils
 import LoadingPage from "utils/LoadingPage";
-
+import Loader from "utils/Loader";
+//helpers
+import { helperFunctions } from "helpers/functions";
+//components
+import Background from "components/Background";
 // Lazy
 const Favorites = lazy(() => import("pages/Favorites"));
 const Main = lazy(() => import("pages/Main"));
@@ -25,7 +26,7 @@ export default () => {
 
   const {
     weather: { currentLocation },
-    ui: { pageLoader },
+    ui: { pageLoader, loading },
   } = useSelector((state) => state);
 
   const dispatch = useDispatch();
@@ -45,6 +46,7 @@ export default () => {
   return (
     <>
       {pageLoader && <LoadingPage />}
+      {loading && <Loader />}
       <Background>
         <Suspense fallback={<LoadingPage />}>
           <Switch>

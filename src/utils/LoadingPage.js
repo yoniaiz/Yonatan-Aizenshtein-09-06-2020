@@ -4,7 +4,7 @@ import LottieLoader from "./LottieLoader";
 
 export default () => {
   return (
-    <div className="main-loading-page">
+    <div className="full-screen-wrapper main-loading-page">
       <LottieLoader animationJson={mainLoader} />
     </div>
   );
