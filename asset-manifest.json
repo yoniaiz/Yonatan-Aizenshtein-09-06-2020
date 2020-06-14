@@ -1,0 +1,35 @@
+{
+  "files": {
+    "static/js/0.dc0e8c6e.chunk.js": "/Yonatan-Aizenshtein-09-06-2020/static/js/0.dc0e8c6e.chunk.js",
+    "static/js/0.dc0e8c6e.chunk.js.map": "/Yonatan-Aizenshtein-09-06-2020/static/js/0.dc0e8c6e.chunk.js.map",
+    "main.js": "/Yonatan-Aizenshtein-09-06-2020/static/js/main.97a7b907.chunk.js",
+    "main.js.map": "/Yonatan-Aizenshtein-09-06-2020/static/js/main.97a7b907.chunk.js.map",
+    "runtime-main.js": "/Yonatan-Aizenshtein-09-06-2020/static/js/runtime-main.e563d5b6.js",
+    "runtime-main.js.map": "/Yonatan-Aizenshtein-09-06-2020/static/js/runtime-main.e563d5b6.js.map",
+    "static/css/3.3a221eca.chunk.css": "/Yonatan-Aizenshtein-09-06-2020/static/css/3.3a221eca.chunk.css",
+    "static/js/3.dab0f8a2.chunk.js": "/Yonatan-Aizenshtein-09-06-2020/static/js/3.dab0f8a2.chunk.js",
+    "static/js/3.dab0f8a2.chunk.js.map": "/Yonatan-Aizenshtein-09-06-2020/static/js/3.dab0f8a2.chunk.js.map",
+    "static/js/4.d8269785.chunk.js": "/Yonatan-Aizenshtein-09-06-2020/static/js/4.d8269785.chunk.js",
+    "static/js/4.d8269785.chunk.js.map": "/Yonatan-Aizenshtein-09-06-2020/static/js/4.d8269785.chunk.js.map",
+    "static/js/5.d9cb718c.chunk.js": "/Yonatan-Aizenshtein-09-06-2020/static/js/5.d9cb718c.chunk.js",
+    "static/js/5.d9cb718c.chunk.js.map": "/Yonatan-Aizenshtein-09-06-2020/static/js/5.d9cb718c.chunk.js.map",
+    "static/js/6.318e77e7.chunk.js": "/Yonatan-Aizenshtein-09-06-2020/static/js/6.318e77e7.chunk.js",
+    "static/js/6.318e77e7.chunk.js.map": "/Yonatan-Aizenshtein-09-06-2020/static/js/6.318e77e7.chunk.js.map",
+    "index.html": "/Yonatan-Aizenshtein-09-06-2020/index.html",
+    "precache-manifest.63e5ce05d0db15f5ce2376848f19472f.js": "/Yonatan-Aizenshtein-09-06-2020/precache-manifest.63e5ce05d0db15f5ce2376848f19472f.js",
+    "service-worker.js": "/Yonatan-Aizenshtein-09-06-2020/service-worker.js",
+    "static/css/3.3a221eca.chunk.css.map": "/Yonatan-Aizenshtein-09-06-2020/static/css/3.3a221eca.chunk.css.map",
+    "static/js/3.dab0f8a2.chunk.js.LICENSE.txt": "/Yonatan-Aizenshtein-09-06-2020/static/js/3.dab0f8a2.chunk.js.LICENSE.txt",
+    "static/media/hearIconOutline.png": "/Yonatan-Aizenshtein-09-06-2020/static/media/hearIconOutline.5bc2727a.png",
+    "static/media/heartIcon.png": "/Yonatan-Aizenshtein-09-06-2020/static/media/heartIcon.7b36ad43.png",
+    "static/media/logo.png": "/Yonatan-Aizenshtein-09-06-2020/static/media/logo.5eceaf6b.png",
+    "static/media/moon.png": "/Yonatan-Aizenshtein-09-06-2020/static/media/moon.41a17015.png",
+    "static/media/sun.png": "/Yonatan-Aizenshtein-09-06-2020/static/media/sun.bc406e79.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.e563d5b6.js",
+    "static/css/3.3a221eca.chunk.css",
+    "static/js/3.dab0f8a2.chunk.js",
+    "static/js/main.97a7b907.chunk.js"
+  ]
+}
