@@ -36,6 +36,7 @@ export default () => {
     } else {
       // add new address to local storage
       const saveCurrentWeather = {};
+      
       saveCurrentWeather[currentWeather.key] = { ...currentWeather };
 
       favoriteAddresses = { ...favoriteAddresses, ...saveCurrentWeather };

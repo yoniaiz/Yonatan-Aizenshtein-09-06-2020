@@ -64,6 +64,7 @@ export const weatherReducer = (state = WEATHER_INIT, { type, payload }) => {
       };
 
     case `${GET_FAVORITES}${SUCCESS}`:
+      debugger
       return {
         ...state,
         favorite: { ...state.favorite, ...payload },

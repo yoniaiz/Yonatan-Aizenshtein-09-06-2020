@@ -8,7 +8,6 @@ import {
 } from "./types";
 
 import { api, CLEAR, SUCCESS } from "constants/index";
-import { mocks } from "helpers/mocks";
 import { helperFunctions } from "helpers/functions";
 
 import Dispatcher from "helpers/classes/Dispatcher";
@@ -47,11 +46,11 @@ export const getCurrentLocation = () => async (dispatch) => {
       const { latitude, longitude } = pos.coords;
 
       try {
-        // const response = await fetch(
-        //   `${api.getAddressByCoords}?${api.apiKey}&q=${latitude},${longitude}`
-        // );
+        const response = await fetch(
+          `${api.getAddressByCoords}?${api.apiKey}&q=${latitude},${longitude}`
+        );
 
-        const currentAddress = mocks.currentLocation; //await response.json();
+        const currentAddress = await response.json();
         const { LocalizedName, Country, Key } = currentAddress;
 
         const parsedCurrentAddress = {
@@ -102,11 +101,11 @@ export const setAddressWithDetails = (option) => (dispatch) => {
 export const placesAutocomplete = (str) => async () => {
   dispatcher.action = AUTOCOMPLETE;
 
-  dispatcher.request(true);
+  dispatcher.request();
 
   try {
-    // const response = await fetch(`${api.autocomplete}?${api.apiKey}&q=${str}`);
-    const autocompletedAddresses = mocks.autocompleteRes; //await response.json();
+    const response = await fetch(`${api.autocomplete}?${api.apiKey}&q=${str}`);
+    const autocompletedAddresses = await response.json();
 
     const parsedAddresses = helperFunctions.autocompleteAddressesParser(
       autocompletedAddresses
@@ -133,8 +132,10 @@ export const getFiveDayForecast = (
   dispatcher.request(true);
 
   try {
-    // const response = await fetch(`${api.forecasts}/${selectedAddress.value}?${api.apiKey}`);
-    const forecast = mocks.fiveDayForecast; //await response.json();
+    const response = await fetch(
+      `${api.forecasts}/${selectedAddress.value}?${api.apiKey}`
+    );
+    const forecast = await response.json();
     const parsedForecast = helperFunctions.forecastParser(forecast);
 
     dispatcher.success(parsedForecast);
@@ -153,10 +154,10 @@ export const getCurrentWeather = (selectedAddress) => async () => {
   dispatcher.request(true);
 
   try {
-    // const response = await fetch(
-    //   `${api.currentConditions}/${selectedAddress.value}?${api.apiKey}`
-    // );
-    const currentWeather = mocks.currentWeather; // await response.json();
+    const response = await fetch(
+      `${api.currentConditions}/${selectedAddress.value}?${api.apiKey}`
+    );
+    const currentWeather = await response.json();
 
     const {
       WeatherText,
@@ -202,9 +203,9 @@ export const updateCurrentWeather = (selected) => (dispatch) => {
 export const getAllFavoritesCurrentWeather = (
   cachedFavorites,
   currentFavorites
-) => () => {
+) => (dispatch) => {
   dispatcher.action = GET_FAVORITES;
-  dispatcher.request(true);
+  dispatcher.request(true, true);
 
   const filteredFavorites = [];
 
@@ -214,44 +215,60 @@ export const getAllFavoritesCurrentWeather = (
       filteredFavorites.push(value);
     }
   }
-
+  debugger;
   try {
-    dispatcher.success(cachedFavorites);
     // fetch all data and resolve
-    // Promise.all(
-    //   filteredFavorites.map((favorite) =>
-    //     fetch(`${api.currentConditions}${favorite.key}?${api.apiKey}`)
-    //   )
-    // )
-    //   .then((responses) => Promise.all(responses.map((res) => res.json())))
-    //   .then((jsons) => {
-    //     let favorites = jsons.map((json, index) => {
-    //       const {
-    //         WeatherText,
-    //         IsDayTime,
-    //         Temperature: { Imperial, Metric },
-    //       } = json[0];
+    Promise.all(
+      filteredFavorites.map((favorite) =>
+        fetch(`${api.currentConditions}${favorite.key}?${api.apiKey}`)
+      )
+    )
+      .then((responses) => Promise.all(responses.map((res) => res.json())))
+      .then((jsons) => {
+        let favorites = jsons.map((json, index) => {
+          try {
+            const {
+              WeatherText,
+              IsDayTime,
+              Temperature: { Imperial, Metric },
+            } = json[0];
 
-    //       const address = filteredFavorites[index];
+            const address = filteredFavorites[index];
+            debugger;
+            return {
+              name: address.city || address.name,
+              text: WeatherText,
+              isDayTime: IsDayTime,
+              key: address.value || address.key,
+              value: address.value || address.key,
+              celsius: Metric.Value,
+              fahrenheit: Imperial.Value,
+            };
+          } catch (e) {
+            console.log(e);
+            dispatcher.failure({ message: "Something went wrong.." });
+            dispatcher.loadingDone();
+          }
+        });
 
-    //       return {
-    //         name: address.city,
-    //         text: WeatherText,
-    //         isDayTime: IsDayTime,
-    //         key: address.value,
-    //         value: address.value,
-    //         celsius: Metric.Value,
-    //         fahrenheit: Imperial.Value,
-    //       };
-    //     });
+        const favoritesAsObject = {};
 
-    //     localStorage.setItem("favorites", JSON.stringify(favorites));
-    //     dispatcher.success(favorites);
-    //     dispatcher.loadingDone();
-    //   });
+        favorites.forEach((fav) => {
+          favoritesAsObject[fav.key] = { ...fav };
+        });
+
+        localStorage.setItem("favorites", JSON.stringify(favoritesAsObject));
+
+        dispatch({
+          type: `${GET_FAVORITES}${SUCCESS}`,
+          payload: { ...favoritesAsObject },
+        });
+
+        dispatcher.loadingDone();
+      });
   } catch (e) {
     console.log(e);
-  } finally {
+    dispatcher.failure({ message: "Something went wrong.." });
     dispatcher.loadingDone();
   }
 };

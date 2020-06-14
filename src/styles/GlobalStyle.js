@@ -340,8 +340,8 @@ export const GlobalStyle = createGlobalStyle`
     }
 
     .weather-animations-container .cloud {
-        top: -55%;
-        right: 5%;
+        top: -60%;
+        right: 7%;
         width: 30% !important;
       }
       .weather-animations-container .night-mode {

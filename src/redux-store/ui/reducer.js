@@ -12,7 +12,7 @@ export const uiReducer = (state = INIT, { type, payload }) => {
     case NIGHT_MODE:
       return { ...state, nightMode: !state.nightMode };
     case LOADING:
-      return { ...state, loading: true };
+      return { ...state, loading: !state.pageLoader ? true: false };
     case PAGE_LOADER:
       return { ...state, pageLoader: true };
     case LOADING_DONE:
