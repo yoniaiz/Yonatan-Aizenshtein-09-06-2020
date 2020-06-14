@@ -1,4 +1,5 @@
 import { NIGHT_MODE } from "./types";
+import { LOADING, LOADING_DONE, PAGE_LOADER } from "constants/index";
 
 const INIT = {
   loading: false,
@@ -10,6 +11,12 @@ export const uiReducer = (state = INIT, { type, payload }) => {
   switch (type) {
     case NIGHT_MODE:
       return { ...state, nightMode: !state.nightMode };
+    case LOADING:
+      return { ...state, loading: true };
+    case PAGE_LOADER:
+      return { ...state, pageLoader: true };
+    case LOADING_DONE:
+      return { ...state, loading: false, pageLoader: false };
     default:
       return { ...state };
   }

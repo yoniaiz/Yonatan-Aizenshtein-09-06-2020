@@ -13,6 +13,7 @@ import Background from "components/Background";
 //redux
 import { getCurrentLocation, setAddressWithDetails } from "redux-store/actions";
 import { useDispatch, useSelector } from "react-redux";
+import LoadingPage from "utils/LoadingPage";
 
 // Lazy
 const Favorites = lazy(() => import("pages/Favorites"));
@@ -22,7 +23,11 @@ export default () => {
   const location = useLocation();
   const history = useHistory();
 
-  const { currentLocation } = useSelector((state) => state.weather);
+  const {
+    weather: { currentLocation },
+    ui: { pageLoader },
+  } = useSelector((state) => state);
+
   const dispatch = useDispatch();
 
   React.useEffect(() => {
@@ -38,15 +43,18 @@ export default () => {
   }, []);
 
   return (
-    <Background>
-      <Suspense fallback={<div>loading</div>}>
-        <Switch>
-          <Route path="/favorite" exact component={Favorites} />
-          <Route path="/main/:id" exact component={Main} />
-          <Route path="/" exact component={Main} />
-          <Redirect to="/" />
-        </Switch>
-      </Suspense>
-    </Background>
+    <>
+      {pageLoader && <LoadingPage />}
+      <Background>
+        <Suspense fallback={<LoadingPage />}>
+          <Switch>
+            <Route path="/favorite" exact component={Favorites} />
+            <Route path="/main/:id" exact component={Main} />
+            <Route path="/" exact component={Main} />
+            <Redirect to="/" />
+          </Switch>
+        </Suspense>
+      </Background>
+    </>
   );
 };

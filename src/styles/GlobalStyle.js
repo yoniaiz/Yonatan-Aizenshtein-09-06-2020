@@ -42,6 +42,19 @@ export const GlobalStyle = createGlobalStyle`
     position: relative;
   }
 
+  .main-loading-page{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: white;
+    z-index: 100000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
   header {
     height: ${(props) => props.theme.header}vh;
     width: 100vw;
