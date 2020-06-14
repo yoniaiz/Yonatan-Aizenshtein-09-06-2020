@@ -109,10 +109,14 @@ export const GlobalStyle = createGlobalStyle`
 
     .nav-section-margin{
       margin-top: 1.2rem;
-      margin-left: .5rem;
-      margin-right: .5rem;
       width: 20%;
+
+      @media ${device.mobileL}{
+        margin-right: .5em;
+        margin-left: .5em;
+      }
     }
+
     .logo{
       img{
         width: 60%;
