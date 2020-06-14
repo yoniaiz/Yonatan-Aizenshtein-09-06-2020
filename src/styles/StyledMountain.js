@@ -30,11 +30,25 @@ export const StyledMountains = styled.div`
       32% 57%,
       39% 35%
     );
-    background: linear-gradient(90deg, #C4C4C4 37.94%, #FFFFFF 78.89%);
+    background: linear-gradient(90deg, #c4c4c4 37.94%, #ffffff 78.89%);
     position: absolute;
     top: 0;
     z-index: 1000;
     width: 100%;
     height: ${(props) => props.snowHeight};
+  }
+
+  animation-name: grow;
+  animation-iteration-count: forward;
+  animation-duration: 3s;
+  animation-timing-function: ease;
+
+  @keyframes grow {
+    from {
+      transform: translateY(100%);
+    }
+    to {
+      transform: translateY(0)
+    }
   }
 `;

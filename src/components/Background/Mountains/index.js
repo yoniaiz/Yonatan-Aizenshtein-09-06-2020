@@ -11,7 +11,8 @@ export default () => {
   const generateSnow = () => `${snowHeight + Math.floor(Math.random() * 10)}%`;
 
   const { width } = React.useContext(ThemeContext);
-
+  if (!width) return null;
+  
   React.useEffect(() => {
     let regularMountains = [
       helperFunctions.generateDynamicComponent(
