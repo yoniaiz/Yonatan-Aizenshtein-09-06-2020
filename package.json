@@ -24,10 +24,10 @@
   },
   "scripts": {
     "start": "dotenv -e .env react-scripts start",
-    "build": "dotenv -e .env react-scripts build",
-    "predeploy": "dotenv -e .env npm run build",
+    "build": "react-scripts build",
+    "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
-    "test": "dotenv -e .env.tests react-scripts test",
+    "test": "react-scripts test",
     "eject": "react-scripts eject",
     "start-sw": "http-server ./build"
   },
