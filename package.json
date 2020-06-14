@@ -24,7 +24,7 @@
   },
   "scripts": {
     "start": "dotenv -e .env react-scripts start",
-    "build": "dotenv -e .env react-scripts build",
+    "build": "react-scripts build",
     "travis-build": "react-scripts build",
     "test": "CI=true dotenv -e .env.tests react-scripts test",
     "eject": "react-scripts eject",
