@@ -24,6 +24,7 @@
   "scripts": {
     "start": "dotenv -e .env react-scripts start",
     "build": "dotenv -e .env react-scripts build",
+    "travis-build": "react-scripts build",
     "test": "dotenv -e .env.tests react-scripts test",
     "eject": "react-scripts eject",
     "start-sw": "http-server ./build"
