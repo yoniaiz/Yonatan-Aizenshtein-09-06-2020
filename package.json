@@ -23,7 +23,7 @@
   },
   "scripts": {
     "start": "dotenv -e .env react-scripts start",
-    "build": "dotenv -e .env react-scripts build",
+    "build": "react-scripts build",
     "predeploy": "dotenv -e .env npm run build",
     "deploy": "gh-pages -d build",
     "test": "dotenv -e .env.tests react-scripts test",
