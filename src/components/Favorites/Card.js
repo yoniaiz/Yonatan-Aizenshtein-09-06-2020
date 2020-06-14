@@ -41,7 +41,10 @@ export default ({ address, history }) => {
         {weather && <Animation display={weather} />}
       </div>
       <div className="card-footer">
-        <h3>{address[measurement === "f" ? "fahrenheit" : "celsius"]}°{measurement.toUpperCase()}</h3>
+        <h3>
+          {Math.round(address[measurement === "f" ? "fahrenheit" : "celsius"])}°
+          {measurement.toUpperCase()}
+        </h3>
         <span>{address.name}</span>
       </div>
     </StyledWeatherCard>
