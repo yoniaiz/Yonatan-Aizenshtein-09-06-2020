@@ -1,4 +1,3 @@
-7. add toggle button to favorites card.
 8. add unit test to check the login of add to favorites and display.
     add test of checking responsive display of cards.
     add test to check if sun animation is not displayed on favorites page.

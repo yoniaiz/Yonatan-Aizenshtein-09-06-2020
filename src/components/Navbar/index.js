@@ -1,6 +1,6 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
-
+import logo from "assets/images/logo.png";
 import Switch from "./Switch";
 
 export default () => {
@@ -10,7 +10,9 @@ export default () => {
   return (
     <header>
       <div className="logo nav-section-margin">
-        <Link to="/">HWT</Link>
+        <Link to="/">
+          <img src={logo} />
+        </Link>
       </div>
       <div className="navigation nav-section-margin">
         <Link to="/" className={!favoriteActive ? "active" : ""}>

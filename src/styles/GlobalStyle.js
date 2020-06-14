@@ -56,7 +56,12 @@ export const GlobalStyle = createGlobalStyle`
       margin-right: .5rem;
       width: 20%;
     }
-
+    .logo{
+      img{
+        width: 60%;
+        min-width: 80px;
+      }
+    }
    a{
     text-decoration: none;
     color: white;
