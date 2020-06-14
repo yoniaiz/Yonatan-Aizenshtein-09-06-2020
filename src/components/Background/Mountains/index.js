@@ -63,7 +63,7 @@ export default () => {
         ...mount,
         height: `${parseInt(mount.height) + 20}%`,
         width: `${parseInt(mount.width) + 8}%`,
-        left: `${parseInt(mount.left) - (width > 1200? -5 : 10)}${
+        left: `${parseInt(mount.left) - (width > 1200 ? -5 : 10)}${
           mount.left.includes("%") ? "%" : "px"
         }`,
         zIndex: 0,
@@ -76,15 +76,17 @@ export default () => {
     setMountains([...regularMountains, ...backgroundMountains]);
   }, [width]);
 
-  return mountains.map((mountain) => (
+  return mountains.map((mountain, index) => (
     <StyledMountains
       height={mountain.height}
       bottom={mountain.bottom}
       left={mountain.left}
       width={mountain.width}
+      data-testid="mountain"
       zIndex={mountain.zIndex}
       snowHeight={mountain.snowHeight}
       opacity={mountain.opacity ? mountain.opacity : 1}
+      key={index}
     >
       <div className="snow" />
     </StyledMountains>

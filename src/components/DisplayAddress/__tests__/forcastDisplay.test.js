@@ -10,6 +10,8 @@ import { renderWithRouterAndRedux } from "utils/testsUtils";
 //components
 import DisplayAddress from "components/DisplayAddress";
 
+jest.mock('lottie-web');
+
 global.fetch = jest.fn(() =>
   Promise.resolve({
     json: () => Promise.resolve({ ...mocks.autocompleteRes }),

@@ -47,6 +47,7 @@
     "@testing-library/react": "^9.5.0",
     "dotenv": "^8.2.0",
     "dotenv-cli": "^3.1.0",
-    "http-server": "^0.12.3"
+    "http-server": "^0.12.3",
+    "jest-canvas-mock": "^2.2.0"
   }
 }

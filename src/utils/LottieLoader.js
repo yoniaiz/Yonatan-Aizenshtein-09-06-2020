@@ -45,5 +45,11 @@ export default ({ animationJson, classes = "" }) => {
     }
   }, [animationJson]);
 
-  return <div className={classes} ref={(ref) => (animation = ref)} />;
+  return (
+    <div
+      data-testid={`${classes}`}
+      className={classes}
+      ref={(ref) => (animation = ref)}
+    />
+  );
 };

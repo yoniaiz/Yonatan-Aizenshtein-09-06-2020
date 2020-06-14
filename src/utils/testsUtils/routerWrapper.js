@@ -18,11 +18,16 @@ export function renderWithRouterAndRedux(
     history = createMemoryHistory({ initialEntries: [route] }),
     initialState = {
       weather: {
-        favorite: [],
+        favorite: {},
         currentLocation: {},
         autocomplete: [],
         forecast: {},
         currentWeather: {},
+      },
+      ui: {
+        loading: false,
+        pageLoader: false,
+        nightMode: new Date().getHours() > 18 || new Date().getHours() < 6, // detect if night
       },
     },
     store = createStore(rootReducer, initialState, applyMiddleware(thunk)),

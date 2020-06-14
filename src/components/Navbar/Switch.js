@@ -36,6 +36,7 @@ class SwitchExample extends Component {
         checked={this.state.checked}
         width={65}
         height={30}
+        data-testid="nightMode-toggle"
         uncheckedIcon={
           <img src={moon} style={{ width: "50%", position: "absolute" }} />
         }

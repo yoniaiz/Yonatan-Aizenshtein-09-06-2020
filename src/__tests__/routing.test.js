@@ -3,11 +3,12 @@ import "@testing-library/jest-dom/extend-expect";
 
 // wrappers for testing redux and react-router-dom
 import { renderWithRouterAndRedux } from "utils/testsUtils";
-import { render, cleanup, fireEvent, wait } from "@testing-library/react";
+import { cleanup, fireEvent, wait } from "@testing-library/react";
 
 //components
 import App from "pages/App";
 
+jest.mock("lottie-web");
 afterEach(cleanup);
 
 test("routing to unknown url redirected to main and then to favorites", async () => {
@@ -19,21 +20,11 @@ test("routing to unknown url redirected to main and then to favorites", async ()
 
   const LinkToFavorites = getByText("Favorite");
 
-  expect(getByTestId("main-page")).toHaveTextContent("main");
+  expect(getByTestId("main-page")).toBeInTheDocument();
 
   fireEvent.click(LinkToFavorites);
 
   await wait();
 
-  expect(getByTestId("favorite-page")).toHaveTextContent("Favorite");
-});
-
-test("routing to main with id", async () => {
-  const id = "1";
-  const route = `/main/${id}`;
-  const { getByText } = renderWithRouterAndRedux(<App />, { route });
-
-  await wait();
-
-  expect(getByText(id)).toBeInTheDocument();
+  expect(getByTestId("favorite-page")).toBeInTheDocument();
 });

@@ -26,7 +26,7 @@ export default () => {
   return (
     <ErrorBoundary>
       <div data-testid="favorite-page" className="favorites-container">
-        <Favorites favorites={cachedFavorites} />
+        <Favorites favorites={favorite} />
       </div>
     </ErrorBoundary>
   );

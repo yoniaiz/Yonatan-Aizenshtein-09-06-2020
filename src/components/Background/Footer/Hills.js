@@ -39,13 +39,15 @@ export default () => {
 
   return (
     <div className="hills-container">
-      {hills.map((hill) => (
+      {hills.map((hill, index) => (
         <StyledHills
           height={hill.height}
           width={hill.width}
           left={hill.left}
+          data-testid="hill"
           bottom={hill.bottom}
           zIndex={hill.zIndex}
+          key={index}
         />
       ))}
     </div>
