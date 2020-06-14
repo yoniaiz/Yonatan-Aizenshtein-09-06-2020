@@ -1,4 +1,4 @@
-const BASE_URL = "http://dataservice.accuweather.com/";
+const BASE_URL = "https://dataservice.accuweather.com/";
 
 export const api = {
   autocomplete: `${BASE_URL}locations/v1/cities/autocomplete`,
