@@ -88,8 +88,6 @@ export const getCurrentLocation = () => async (dispatch) => {
     console.log(e);
     dispatch(setAddressWithDetails(telAvivForFallback));
   }
-
-  dispatcher.loadingDone();
 };
 
 export const setAddressWithDetails = (option) => (dispatch) => {

@@ -1,27 +1,29 @@
 import React from "react";
-import lottie from "lottie-web";
 import wind from "assets/animations/wind.json";
 import rain from "assets/animations/rain.json";
 import { useSelector } from "react-redux";
 import { helperFunctions } from "helpers/functions";
+import LottieLoader from "utils/LottieLoader";
 
 export default () => {
   const { currentWeather } = useSelector((state) => state.weather);
-
-  let cloud_animation = null;
+  const [type, setType] = React.useState(null);
 
   React.useEffect(() => {
-    const type = helperFunctions.detectWeather(currentWeather.celsius);
-    if (!helperFunctions.validObjectWithKeys(currentWeather) || type === "sun") return;
+    const t = helperFunctions.detectWeather(currentWeather.celsius);
+    if (!helperFunctions.validObjectWithKeys(currentWeather) || t === "sun")
+      return;
 
-    lottie.loadAnimation({
-      container: cloud_animation,
-      renderer: "svg",
-      loop: true,
-      autoplay: true,
-      animationData: type === "cloud" ? wind : rain,
-    });
+    setType(t);
   }, [currentWeather]);
 
-  return <div className="cloud" ref={(ref) => (cloud_animation = ref)} />;
+  return (
+    type &&
+    type !== "sun" && (
+      <LottieLoader
+        animationJson={type === "cloud" ? wind : rain}
+        classes="cloud"
+      />
+    )
+  );
 };

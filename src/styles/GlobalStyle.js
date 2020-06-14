@@ -147,11 +147,11 @@ export const GlobalStyle = createGlobalStyle`
     justify-content: center;
 
     div{
-      width: 80%;
+      width: 80% !important;
       max-width: 600px;
       position : absolute;
     }
-    .sun {
+    .sun, .moon {
       top: 18%;
     }
     .cloud {
@@ -280,12 +280,11 @@ export const GlobalStyle = createGlobalStyle`
         right: 5%;
         width: 30% !important;
       }
-    }
-
-    .weather-animations-container .moon {
-      top: -50%;
-      left: 5%;
-      width: 30% !important;
+      .weather-animations-container .moon {
+        top: -50%;
+        left: 5%;
+        width: 30% !important;
+      }
     }
   }
   @media ${device.desktop} {
