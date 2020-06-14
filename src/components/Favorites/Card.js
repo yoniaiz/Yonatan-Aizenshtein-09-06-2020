@@ -8,11 +8,13 @@ import { useDispatch } from "react-redux";
 //helpers
 import { helperFunctions } from "helpers/functions";
 //components
+import MeasurementToggle from "components/DisplayAddress/DisplayAddressHeader/MeasureMethod";
 import Animation from "./LottieAnimation";
 
 export default ({ address, history }) => {
   const [weather, setWeather] = React.useState(null);
   const [redirect, setRedirect] = React.useState(null);
+  const [measurement, setMeasurement] = React.useState("f");
 
   const dispatch = useDispatch();
 
@@ -21,7 +23,7 @@ export default ({ address, history }) => {
   }, []);
 
   if (redirect) {
-    dispatch(updateCurrentWeather(address))
+    dispatch(updateCurrentWeather(address));
     return <Redirect to={`/main/${redirect}`} />;
   }
 
@@ -31,10 +33,15 @@ export default ({ address, history }) => {
       onClick={() => setRedirect(address.key)}
     >
       <div className="card-header">
+        <MeasurementToggle
+          measurement={measurement}
+          setMeasurement={setMeasurement}
+          dataFor={address.key}
+        />
         {weather && <Animation display={weather} />}
       </div>
       <div className="card-footer">
-        <h3>{address.fahrenheit}°F</h3>
+        <h3>{address[measurement === "f" ? "fahrenheit" : "celsius"]}°{measurement.toUpperCase()}</h3>
         <span>{address.name}</span>
       </div>
     </StyledWeatherCard>

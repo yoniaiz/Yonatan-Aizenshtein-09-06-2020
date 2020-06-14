@@ -39,10 +39,26 @@ export const StyledWeatherCard = styled.div`
       width: 65%;
       max-width: 120px;
     }
+    .tooltip{
+      max-width: 200px;
+    }
+
+    .deg-measure{
+      position: absolute;
+      left: 0;
+      top: 0;
+      font-size: 1rem;
+
+      .other-deg-option{
+        font-size: .5em;
+        opacity: 0.5;
+      }
+    }
   }
 
   .card-footer {
     line-height: 40px;
+    position: relative;
     h3 {
       margin: 0;
     }

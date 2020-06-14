@@ -1,8 +1,10 @@
 import React from "react";
 import ReactTooltip from "react-tooltip";
 
-export default ({ setMeasurement, measurement }) => {
-  const handleChange = () => {
+export default ({ setMeasurement, measurement, dataFor }) => {
+  const handleChange = (e) => {
+    e.stopPropagation(); //prevent redirect on click
+
     setMeasurement((prevMesure) => {
       if (prevMesure === "f") return "c";
       return "f";
@@ -14,12 +16,18 @@ export default ({ setMeasurement, measurement }) => {
     <div
       className="deg-measure pointer noselect"
       data-tip={`Change temperature display from ${measure1} to ${measure2}`}
-      data-for="measure"
+      data-for={`${dataFor}_measure`}
       onClick={handleChange}
     >
       <span>°{measurement.toUpperCase()}</span>
       <span className="other-deg-option">°{measure2.toUpperCase()[0]}</span>
-      <ReactTooltip effect="solid" type="light" id="measure" />
+      <ReactTooltip
+        className="tooltip"
+        effect="solid"
+        place={dataFor ? "bottom" : ""}
+        type={dataFor ? "" : "light"}
+        id={`${dataFor}_measure`}
+      />
     </div>
   );
 };
