@@ -181,10 +181,23 @@ export const getCurrentWeather = (selectedAddress) => async () => {
   }
 };
 
-export const updateCurrentWeather = (payload) => ({
-  type: `${CURRENT_WEATHER}${SUCCESS}`,
-  payload,
-});
+export const updateCurrentWeather = (selected) => (dispatch) => {
+  const payload = {
+    ...selected,
+    name: selected.name ? selected.name : selected.address,
+    value: selected.key,
+  };
+
+  dispatch({
+    type: `${AUTOCOMPLETE}${SUCCESS}`,
+    payload: [payload],
+  });
+
+  dispatch({
+    type: `${CURRENT_WEATHER}${SUCCESS}`,
+    payload,
+  });
+};
 
 export const getAllFavoritesCurrentWeather = (
   cachedFavorites,
@@ -203,37 +216,42 @@ export const getAllFavoritesCurrentWeather = (
   }
 
   try {
+    dispatcher.success(cachedFavorites);
     // fetch all data and resolve
-    Promise.all(
-      filteredFavorites.map((favorite) =>
-        fetch(`${api.currentConditions}${favorite.key}?${api.apiKey}`)
-      )
-    )
-      .then((responses) => Promise.all(responses.map((res) => res.json())))
-      .then((jsons) => {
-        let favorites = jsons.map((json, index) => {
-          const {
-            WeatherText,
-            IsDayTime,
-            Temperature: { Imperial, Metric },
-          } = json[0];
+    // Promise.all(
+    //   filteredFavorites.map((favorite) =>
+    //     fetch(`${api.currentConditions}${favorite.key}?${api.apiKey}`)
+    //   )
+    // )
+    //   .then((responses) => Promise.all(responses.map((res) => res.json())))
+    //   .then((jsons) => {
+    //     let favorites = jsons.map((json, index) => {
+    //       const {
+    //         WeatherText,
+    //         IsDayTime,
+    //         Temperature: { Imperial, Metric },
+    //       } = json[0];
 
-          const address = filteredFavorites[index];
+    //       const address = filteredFavorites[index];
 
-          return {
-            name: address.city,
-            text: WeatherText,
-            isDayTime: IsDayTime,
-            key: address.value,
-            celsius: Metric.Value,
-            fahrenheit: Imperial.Value,
-          };
-        });
+    //       return {
+    //         name: address.city,
+    //         text: WeatherText,
+    //         isDayTime: IsDayTime,
+    //         key: address.value,
+    //         value: address.value,
+    //         celsius: Metric.Value,
+    //         fahrenheit: Imperial.Value,
+    //       };
+    //     });
 
-        dispatcher.success(favorites);
-        dispatcher.loadingDone();
-      });
+    //     localStorage.setItem("favorites", JSON.stringify(favorites));
+    //     dispatcher.success(favorites);
+    //     dispatcher.loadingDone();
+    //   });
   } catch (e) {
     console.log(e);
+  } finally {
+    dispatcher.loadingDone();
   }
 };

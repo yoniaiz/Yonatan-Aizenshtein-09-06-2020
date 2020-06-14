@@ -19,7 +19,7 @@ export default () => {
     if (!helperFunctions.validObjectWithKeys(cachedFavorites)) {
       showNotification("You did not choose any favorite addresses");
     } else {
-      // dispatch(getAllFavoritesCurrentWeather(cachedFavorites, favorite));
+      dispatch(getAllFavoritesCurrentWeather(cachedFavorites, favorite));
     }
   }, []);
 

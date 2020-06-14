@@ -17,8 +17,10 @@ const { validObjectWithKeys } = helperFunctions;
 
 export default ({ match: { params } }) => {
   const history = useHistory();
-  const { currentLocation, favorite } = useSelector((state) => state.weather);
 
+  const { currentLocation, favorite, currentWeather } = useSelector(
+    (state) => state.weather
+  );
   const dispatch = useDispatch();
 
   const [selectedAddress, setSelectedAddress] = React.useState({});
@@ -33,7 +35,7 @@ export default ({ match: { params } }) => {
       !validObjectWithKeys(selectedAddress) &&
       !params.id
     ) {
-      // set selected address as current location
+      // set currentLocation as selected address
       setSelectedAddress(currentLocation);
     }
 
@@ -44,18 +46,12 @@ export default ({ match: { params } }) => {
     ) {
       // when id passed in params check if valid number
       if (params.id.match(/^[0-9]+$/) && favorite[params.id]) {
-        const address = favorite[params.id];
-        setSelectedAddress(address);
-        dispatch(getFiveDayForecast(address, false));
+        setSelectedAddress(currentWeather);
+        dispatch(getFiveDayForecast(currentWeather, false));
       } else {
         history.push("/");
       }
     }
-
-    return () => {
-      // on component unmount clear auto complete
-      dispatch(clearAutocomplete());
-    };
   }, [selectedAddress, currentLocation]);
 
   return (

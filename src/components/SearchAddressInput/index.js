@@ -24,8 +24,11 @@ export default ({ selectedAddress, setSelectedAddress }) => {
     if (autocomplete && autocomplete.length > 0) {
       // parse the autocomplete to fit the react-select component
       const selectOptions = autocomplete.map((address) => ({
-        label: `${address.country} ${address.address}`,
-        city: `${address.address}`,
+        label:
+          address.country && address.address
+            ? `${address.country} ${address.address}`
+            : address.name,
+        city: address.address || address.name,
         value: address.key,
       }));
 
