@@ -5,5 +5,4 @@
 9. upload to heroku.
 10. create Tavis ci integration for uploading to heroku
 11. check all helper functions
-12. add loaders
 13. add animation if needed

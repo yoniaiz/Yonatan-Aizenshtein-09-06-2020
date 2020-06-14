@@ -24,10 +24,7 @@ export default () => {
   const location = useLocation();
   const history = useHistory();
 
-  const {
-    weather: { currentLocation },
-    ui: { pageLoader, loading },
-  } = useSelector((state) => state);
+  const { pageLoader, loading } = useSelector((state) => state.ui);
 
   const dispatch = useDispatch();
 
@@ -35,12 +32,8 @@ export default () => {
     if (location.pathname.includes("main")) {
       history.push("/");
     }
-    // if no current location get current location but if already exist use the same one
-    if (!helperFunctions.validObjectWithKeys(currentLocation)) {
-      dispatch(getCurrentLocation());
-    } else {
-      dispatch(setAddressWithDetails(currentLocation));
-    }
+
+    dispatch(getCurrentLocation());
   }, []);
 
   return (
