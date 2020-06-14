@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "f1ecc788dd39a7f645907690d16f81e8",
+    "revision": "90850da74555e942f7153fffc8728183",
     "url": "/Yonatan-Aizenshtein-09-06-2020/index.html"
   },
   {
@@ -32,8 +32,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/Yonatan-Aizenshtein-09-06-2020/static/js/6.318e77e7.chunk.js"
   },
   {
-    "revision": "c7f5730bcb897987a681",
-    "url": "/Yonatan-Aizenshtein-09-06-2020/static/js/main.97a7b907.chunk.js"
+    "revision": "657c6e2a7d6f8681bb8d",
+    "url": "/Yonatan-Aizenshtein-09-06-2020/static/js/main.2d88f7f4.chunk.js"
   },
   {
     "revision": "283e75b67c723dc13e16",

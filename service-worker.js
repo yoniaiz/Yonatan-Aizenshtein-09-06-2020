@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/Yonatan-Aizenshtein-09-06-2020/precache-manifest.63e5ce05d0db15f5ce2376848f19472f.js"
+  "/Yonatan-Aizenshtein-09-06-2020/precache-manifest.e5b9477a1cae1bf784c0d61da369f157.js"
 );
 
 self.addEventListener('message', (event) => {
