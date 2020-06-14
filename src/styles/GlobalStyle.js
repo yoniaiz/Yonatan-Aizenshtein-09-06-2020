@@ -208,7 +208,22 @@ export const GlobalStyle = createGlobalStyle`
       right: 2%;
       width: 90% !important;
       z-index: 5;
+      animation-name: flyIn;
+      animation-iteration-count: forward;
+      animation-duration: 4s;
+      animation-timing-function: ease;
     }
+
+    @keyframes flyIn {
+      from{
+        transform: translate(300%,-100%);
+      }
+      to{
+        transform: translate(0,0);
+      }
+    }
+
+    
   }
 
   .toggle-day-time-switch{
