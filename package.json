@@ -2,6 +2,7 @@
   "name": "weather-app",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://yoniaiz.github.io/Yonatan-Aizenshtein-09-06-2020/",
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/user-event": "^7.2.1",
@@ -25,7 +26,7 @@
     "start": "dotenv -e .env react-scripts start",
     "build": "dotenv -e .env react-scripts build",
     "travis-build": "react-scripts build",
-    "test": "dotenv -e .env.tests react-scripts test",
+    "test": "CI=true dotenv -e .env.tests react-scripts test",
     "eject": "react-scripts eject",
     "start-sw": "http-server ./build"
   },
