@@ -7,14 +7,14 @@ import {
   AUTOCOMPLETE_LOADER,
 } from "constants/index";
 
-const INIT = {
+export const UI_INIT = {
   loading: 0,
   pageLoader: 0,
   autocompleteLoader: false,
   nightMode: new Date().getHours() > 18 || new Date().getHours() < 6, // detect if night
 };
 
-export const uiReducer = (state = INIT, { type, payload }) => {
+export const uiReducer = (state = UI_INIT, { type, payload }) => {
   switch (type) {
     case NIGHT_MODE:
       return { ...state, nightMode: !state.nightMode };

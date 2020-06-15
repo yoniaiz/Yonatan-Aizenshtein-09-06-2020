@@ -20,7 +20,7 @@ export default ({ address, history }) => {
 
   React.useEffect(() => {
     setWeather(helperFunctions.detectWeather(address.celsius));
-  }, [address,address.celsius]);
+  }, [address, address.celsius]);
 
   if (redirect) {
     dispatch(updateCurrentWeather(address));
@@ -30,6 +30,7 @@ export default ({ address, history }) => {
   return (
     <StyledWeatherCard
       className="pointer noselect"
+      data-testid="favorite-card"
       onClick={() => setRedirect(address.key)}
     >
       <div className="card-header">

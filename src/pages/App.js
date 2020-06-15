@@ -31,7 +31,7 @@ export default () => {
       history.push("/");
     }
 
-    // dispatch(getCurrentLocation());
+    dispatch(getCurrentLocation());
   }, []);
 
   return (

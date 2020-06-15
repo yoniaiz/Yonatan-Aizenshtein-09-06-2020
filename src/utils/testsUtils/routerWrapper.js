@@ -6,8 +6,9 @@ import { Router } from "react-router-dom";
 //redux
 import { createStore, applyMiddleware } from "redux";
 import { Provider } from "react-redux";
-import { rootReducer } from "redux-store/root";
 import thunk from "redux-thunk";
+import { rootReducer } from "redux-store/root";
+import { WEATHER_INIT, UI_INIT } from "redux-store/reducers";
 
 import { render } from "@testing-library/react";
 
@@ -17,18 +18,8 @@ export function renderWithRouterAndRedux(
     route = "/",
     history = createMemoryHistory({ initialEntries: [route] }),
     initialState = {
-      weather: {
-        favorite: {},
-        currentLocation: {},
-        autocomplete: [],
-        forecast: {},
-        currentWeather: {},
-      },
-      ui: {
-        loading: false,
-        pageLoader: false,
-        nightMode: new Date().getHours() > 18 || new Date().getHours() < 6, // detect if night
-      },
+      weather: WEATHER_INIT,
+      ui: UI_INIT,
     },
     store = createStore(rootReducer, initialState, applyMiddleware(thunk)),
     ...renderOptions
