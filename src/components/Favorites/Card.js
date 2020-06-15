@@ -8,7 +8,7 @@ import { useDispatch } from "react-redux";
 //helpers
 import { helperFunctions } from "helpers/functions";
 //components
-import MeasurementToggle from "components/DisplayAddress/DisplayAddressHeader/MeasureMethod";
+import MeasurementToggle from "utils/MeasureMethod";
 import Animation from "./LottieAnimation";
 
 export default ({ address, history }) => {

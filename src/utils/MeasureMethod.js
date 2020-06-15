@@ -17,6 +17,7 @@ export default ({ setMeasurement, measurement, dataFor }) => {
       className="deg-measure pointer noselect"
       data-tip={`Change temperature display from ${measure1} to ${measure2}`}
       data-for={`${dataFor}_measure`}
+      data-testid="degrees-toggle"
       onClick={handleChange}
     >
       <span>°{measurement.toUpperCase()}</span>

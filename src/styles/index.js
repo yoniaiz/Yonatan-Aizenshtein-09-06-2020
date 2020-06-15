@@ -4,3 +4,4 @@ export * from "./GlobalStyle";
 export * from "./StyledMountain";
 export * from "./StyledWeatherBox";
 export * from "./StyledWeatherCard";
+export * from "./StyledSelectFields";

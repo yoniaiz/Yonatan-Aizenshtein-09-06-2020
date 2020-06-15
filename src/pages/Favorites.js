@@ -13,13 +13,14 @@ import Favorites from "components/Favorites";
 export default () => {
   const { favorite } = useSelector((state) => state.weather);
   const dispatch = useDispatch();
+  
   const cachedFavorites = JSON.parse(localStorage.getItem("favorites"));
 
   React.useEffect(() => {
     if (!helperFunctions.validObjectWithKeys(cachedFavorites)) {
-      showNotification("You did not choose any favorite addresses");
+      showNotification("You did not choose any favorite addresses!");
     } else {
-      dispatch(getAllFavoritesCurrentWeather(cachedFavorites, favorite));
+      // dispatch(getAllFavoritesCurrentWeather(cachedFavorites, favorite));
     }
   }, []);
 

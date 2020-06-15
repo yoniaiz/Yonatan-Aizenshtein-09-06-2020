@@ -3,6 +3,8 @@ import React from "react";
 import { useSelector } from "react-redux";
 //styled components
 import { StyledWeatherBox } from "styles";
+//helpers
+import { helperFunctions } from "helpers/functions";
 //components
 import FiveDayForecast from "./FiveDayForecast";
 import DisplayAddressHeader from "./DisplayAddressHeader";
@@ -12,8 +14,8 @@ export default () => {
   const [measurement, setMeasurement] = React.useState("f");
 
   if (
-    Object.keys(forecast).length === 0 ||
-    Object.keys(currentWeather).length === 0
+    !helperFunctions.validObjectWithKeys(forecast) ||
+    !helperFunctions.validObjectWithKeys(currentWeather)
   )
     return null;
 

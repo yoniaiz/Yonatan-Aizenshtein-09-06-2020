@@ -12,22 +12,22 @@ export default () => {
 
   const { width } = React.useContext(ThemeContext);
   if (!width) return null;
-  
+
   React.useEffect(() => {
     let regularMountains = [
       helperFunctions.generateDynamicComponent(
         "30%",
         "85%",
         "-130px",
-        "-60px",
+        `-7vh`,
         1
       ),
-      helperFunctions.generateDynamicComponent("50%", "90%", "10%", "-60px", 3),
+      helperFunctions.generateDynamicComponent("50%", "90%", "10%", `-7vh`, 3),
       helperFunctions.generateDynamicComponent(
         "50%",
         "80%",
         "55%",
-        "-120px",
+        `-8vh`,
         2
       ),
     ];
@@ -38,7 +38,7 @@ export default () => {
           "20%",
           "75%",
           "70%",
-          "-60px",
+          `-7vh`,
           8
         ),
       ];
@@ -49,7 +49,7 @@ export default () => {
             "50%",
             "70%",
             "-15%",
-            "-60px",
+            `-7vh`,
             8
           )
         );

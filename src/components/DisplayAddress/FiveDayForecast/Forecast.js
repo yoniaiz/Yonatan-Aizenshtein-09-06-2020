@@ -1,10 +1,7 @@
 import React from "react";
 import { helperFunctions } from "helpers/functions";
 
-export default ({
-  forecast: { date, maxTemp, minTemp, day, night },
-  measurement,
-}) => {
+export default ({ forecast: { date, maxTemp, minTemp }, measurement }) => {
   return (
     <div data-testid="forecast" className="forecast">
       <h4>{helperFunctions.getDayOfTheWeek(date)}</h4>

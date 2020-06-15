@@ -14,7 +14,7 @@ import { useSelector } from "react-redux";
 
 export default ({ children }) => {
   const { nightMode } = useSelector((state) => state.ui);
-  let location = useLocation();
+  const location = useLocation();
 
   const size = useWindowSize();
   if (!size || !size.width) return null;
@@ -32,7 +32,7 @@ export default ({ children }) => {
     white: "#FFFFFF",
     footer: "16",
     header: "15",
-    minWidthToSub: width > 1200 ? "20%" : width > 480 ? "20%" : "0%",
+    minWidthToSub: width > 1200 ? "30%" : width > 480 ? "20%" : "0%",
     width,
     fontFamily: '"Roboto", sans-serif',
   };

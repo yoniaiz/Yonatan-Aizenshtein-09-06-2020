@@ -16,14 +16,13 @@ import DisplayAddress from "components/DisplayAddress";
 const { validObjectWithKeys } = helperFunctions;
 
 export default ({ match: { params } }) => {
+  const [selectedAddress, setSelectedAddress] = React.useState({});
   const history = useHistory();
 
+  const dispatch = useDispatch();
   const { currentLocation, favorite, currentWeather } = useSelector(
     (state) => state.weather
-  );
-  const dispatch = useDispatch();
-
-  const [selectedAddress, setSelectedAddress] = React.useState({});
+  )
 
   React.useEffect(() => {
     if (validObjectWithKeys(selectedAddress) && selectedAddress.selected) {

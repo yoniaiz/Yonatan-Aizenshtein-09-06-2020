@@ -1,6 +1,6 @@
 import React from "react";
 import AddToFavorites from "./AddToFavorites";
-import MeasureMethod from "./MeasureMethod";
+import MeasureMethod from "utils/MeasureMethod";
 
 export default ({
   currentWeather: { name, celsius, fahrenheit },

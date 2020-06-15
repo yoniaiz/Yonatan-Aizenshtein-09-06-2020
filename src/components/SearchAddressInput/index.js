@@ -1,8 +1,11 @@
 import React from "react";
+import Select from "react-select";
+
+import { styledSelectField } from "styles";
+import { helperFunctions } from "helpers/functions";
 //redux
-import { placesAutocomplete, clearAutocomplete } from "redux-store/actions";
+import { placesAutocomplete } from "redux-store/actions";
 import { useDispatch, useSelector } from "react-redux";
-import SelectField from "./SelectField";
 
 export default ({ selectedAddress, setSelectedAddress }) => {
   const [inputVal, setInputVal] = React.useState("");
@@ -36,12 +39,30 @@ export default ({ selectedAddress, setSelectedAddress }) => {
 
   return (
     <div className="select-input-container">
-      <SelectField
-        selectedAddress={selectedAddress}
-        setSelectedAddress={setSelectedAddress}
-        setInputVal={setInputVal}
-        inputVal={inputVal}
+      <Select
         options={options}
+        styles={styledSelectField}
+        data-testid="select-input"
+        inputId="select-input"
+        className="select-input"
+        inputValue={inputVal}
+        loadingMessage="loading"
+        placeholder="Select country"
+        value={
+          options.length > 0 &&
+          helperFunctions.validObjectWithKeys(selectedAddress)
+            ? options.filter(
+                (address) => address.value === selectedAddress.value
+              )
+            : null
+        }
+        onChange={(selected) =>
+          setSelectedAddress({ ...selected, selected: true })
+        }
+        onInputChange={(val) => {
+          // english letters only or white space
+          if (/^$|[a-z A-Z]+$/.test(val)) setInputVal(val);
+        }}
       />
     </div>
   );

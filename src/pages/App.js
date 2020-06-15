@@ -19,8 +19,8 @@ const Favorites = lazy(() => import("pages/Favorites"));
 const Main = lazy(() => import("pages/Main"));
 
 export default () => {
-  const location = useLocation();
-  const history = useHistory();
+  const location = useLocation(),
+    history = useHistory();
 
   const { pageLoader, loading } = useSelector((state) => state.ui);
 
@@ -31,7 +31,7 @@ export default () => {
       history.push("/");
     }
 
-    dispatch(getCurrentLocation());
+    // dispatch(getCurrentLocation());
   }, []);
 
   return (

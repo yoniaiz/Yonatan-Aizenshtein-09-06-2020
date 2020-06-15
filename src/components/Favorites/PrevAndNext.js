@@ -15,7 +15,7 @@ export default ({
     const noDisplay = [...notDisplayedCards];
 
     if (noDisplay.length === 0) {
-      // if all not displayed cards loaded just skip pages and not load more
+      // if all not displayed cards loaded just skip pages and don't load any more
       return setCurrentPage((prev) => ++prev);
     }
 
@@ -40,7 +40,7 @@ export default ({
       <button
         type="button"
         onClick={() => setCurrentPage((prev) => --prev)}
-        disabled={currentPage === 0}
+        disabled={currentPage <= 0}
       >
         Prev
       </button>

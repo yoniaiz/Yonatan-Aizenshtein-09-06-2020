@@ -1,7 +1,7 @@
 import React from "react";
 import { Redirect } from "react-router-dom";
 
-import { reset } from "redux-store/actions";
+import { reset, getCurrentLocation } from "redux-store/actions";
 import { connect } from "react-redux";
 
 class ErrorBoundary extends React.Component {
@@ -20,6 +20,7 @@ class ErrorBoundary extends React.Component {
     console.log(error, errorInfo);
     // reset all and start over
     this.props.reset();
+    this.props.getCurrentLocation();
   }
 
   render() {
@@ -31,5 +32,4 @@ class ErrorBoundary extends React.Component {
   }
 }
 
-
-export default connect(null, { reset })(ErrorBoundary);
+export default connect(null, { reset, getCurrentLocation })(ErrorBoundary);

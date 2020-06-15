@@ -59,6 +59,27 @@ const generateDynamicComponent = (
   ...others,
 });
 
+function currentWeatherParser(weather, address) {
+  if (Array.isArray(weather)) {
+    const {
+      WeatherText,
+      IsDayTime,
+      Temperature: { Imperial, Metric },
+    } = weather[0];
+
+    return {
+      name: address.city || address.name,
+      text: WeatherText,
+      isDayTime: IsDayTime,
+      key: address.value || address.key,
+      value: address.value || address.key,
+      celsius: Metric.Value,
+      fahrenheit: Imperial.Value,
+    };
+  }
+  return {};
+}
+
 function getDayOfTheWeek(date) {
   const dt = new Date(date);
   const day = dt.getDay();
@@ -93,5 +114,6 @@ export const helperFunctions = {
   validObjectWithKeys,
   generateDynamicComponent,
   getDayOfTheWeek,
-  detectWeather
+  detectWeather,
+  currentWeatherParser
 };

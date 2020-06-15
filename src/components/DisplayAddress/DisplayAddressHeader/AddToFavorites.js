@@ -54,6 +54,7 @@ export default () => {
   return (
     <div
       className="add-to-favorite-address pointer"
+      data-testid="add-to-favorites"
       onClick={handleAddToFavorites}
     >
       <img

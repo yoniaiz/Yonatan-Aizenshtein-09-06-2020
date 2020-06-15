@@ -36,6 +36,7 @@ export const getCurrentLocation = () => async (dispatch) => {
   const telAvivForFallback = {
     city: "Tel Aviv",
     address: "Tel Aviv",
+    name: "Tel Aviv",
     country: "Israel",
     value: "215854",
     key: "215854",
@@ -88,6 +89,7 @@ export const getCurrentLocation = () => async (dispatch) => {
       dispatcher.failure({
         message: "Geolocation is not supported by your browser",
       });
+      dispatch(setAddressWithDetails(telAvivForFallback));
     } else {
       navigator.geolocation.getCurrentPosition(success, error, options);
     }
@@ -150,7 +152,7 @@ export const getFiveDayForecast = (
     //get current weather if five day forecast was successful
     if (getCurrentLocation) dispatch(getCurrentWeather(selectedAddress));
   } catch {
-    dispatcher.failure();
+    dispatcher.failure({ message: "Something went wrong" });
   } finally {
     dispatcher.loadingDone();
   }
@@ -167,24 +169,13 @@ export const getCurrentWeather = (selectedAddress) => async () => {
     );
     const currentWeather = await response.json();
 
-    const {
-      WeatherText,
-      IsDayTime,
-      Temperature: { Imperial, Metric },
-    } = currentWeather[0];
-
     const parsedCurrentWeather = {
-      name: selectedAddress.city,
-      text: WeatherText,
-      isDayTime: IsDayTime,
-      key: selectedAddress.value,
-      celsius: Metric.Value,
-      fahrenheit: Imperial.Value,
+      ...helperFunctions.currentWeatherParser(currentWeather, selectedAddress),
     };
 
     dispatcher.success(parsedCurrentWeather);
   } catch {
-    dispatcher.failure();
+    dispatcher.failure({ message: "Something went wrong" });
   } finally {
     dispatcher.loadingDone();
   }
@@ -236,23 +227,10 @@ export const getAllFavoritesCurrentWeather = (
       .then((jsons) => {
         try {
           let favorites = jsons.map((json, index) => {
-            const {
-              WeatherText,
-              IsDayTime,
-              Temperature: { Imperial, Metric },
-            } = json[0];
-
-            const address = filteredFavorites[index];
-
-            return {
-              name: address.city || address.name,
-              text: WeatherText,
-              isDayTime: IsDayTime,
-              key: address.value || address.key,
-              value: address.value || address.key,
-              celsius: Metric.Value,
-              fahrenheit: Imperial.Value,
-            };
+            return helperFunctions.currentWeatherParser(
+              json,
+              filteredFavorites[index]
+            );
           });
 
           const favoritesAsObject = {};
