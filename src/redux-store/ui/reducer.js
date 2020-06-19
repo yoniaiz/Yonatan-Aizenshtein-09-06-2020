@@ -36,6 +36,6 @@ export const uiReducer = (state = UI_INIT, { type, payload }) => {
         pageLoader: state.pageLoader > 0 ? --state.pageLoader : 0,
       };
     default:
-      return { ...state };
+      return state;
   }
 };

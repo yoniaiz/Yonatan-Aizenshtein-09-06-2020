@@ -7,6 +7,8 @@ import { helperFunctions } from "helpers/functions";
 import { placesAutocomplete } from "redux-store/actions";
 import { useDispatch, useSelector } from "react-redux";
 
+let timeoutRef = null;
+
 export default ({ selectedAddress, setSelectedAddress }) => {
   const [inputVal, setInputVal] = React.useState("");
   const [options, setOptions] = React.useState([]);
@@ -17,7 +19,13 @@ export default ({ selectedAddress, setSelectedAddress }) => {
   React.useEffect(() => {
     if (inputVal) {
       // call autocomplete when input entered
-      dispatch(placesAutocomplete(inputVal));
+      if (timeoutRef) {
+        clearTimeout(timeoutRef);
+      }
+
+      timeoutRef = setTimeout(() => {
+        dispatch(placesAutocomplete(inputVal));
+      }, 700);
     }
   }, [inputVal]);
 

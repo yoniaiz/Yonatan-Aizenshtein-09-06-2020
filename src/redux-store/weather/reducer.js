@@ -70,6 +70,6 @@ export const weatherReducer = (state = WEATHER_INIT, { type, payload }) => {
       };
 
     default:
-      return { ...state };
+      return state;
   }
 };
